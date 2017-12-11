@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="#PlayMaker简介： PlayMaker是由第三方软件开发商Hotong Games开发完成。它的Logo是一个中文的“玩”字（PS：看来中国文化声名远播）。它既是一个可视化脚本工具，又是一个分层逻辑框架。设计师、程序员使用PlayMaker能够很快的完成游戏原型动作，既适合独立开发者，又特别适合团队合作。 ##PlayMaker的优点：  很多动作行为（例如：跑，跳，攻击等）只需要通过简">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/11/23/PlayMaker/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="#PlayMaker简介： PlayMaker是由第三方软件开发商Hotong Games开发完成。它的Logo是一个中文的“玩”字（PS：看来中国文化声名远播）。它既是一个可视化脚本工具，又是一个分层逻辑框架。设计师、程序员使用PlayMaker能够很快的完成游戏原型动作，既适合独立开发者，又特别适合团队合作。 ##PlayMaker的优点：  很多动作行为（例如：跑，跳，攻击等）只需要通过简">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-23T02:28:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="#PlayMaker简介： PlayMaker是由第三方软件开发商Hotong Games开发完成。它的Logo是一个中文的“玩”字（PS：看来中国文化声名远播）。它既是一个可视化脚本工具，又是一个分层逻辑框架。设计师、程序员使用PlayMaker能够很快的完成游戏原型动作，既适合独立开发者，又特别适合团队合作。 ##PlayMaker的优点：  很多动作行为（例如：跑，跳，攻击等）只需要通过简">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +154,238 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-PlayMaker" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> #PlayMaker简介：</p>
+<p>PlayMaker是由第三方软件开发商Hotong Games开发完成。它的Logo是一个中文的“玩”字（PS：看来中国文化声名远播）。它既是一个可视化脚本工具，又是一个分层逻辑框架。<br>设计师、程序员使用PlayMaker能够很快的完成游戏原型动作，既适合独立开发者，又特别适合团队合作。</p>
+<p>##PlayMaker的优点：</p>
+<ol>
+<li>很多动作行为（例如：跑，跳，攻击等）只需要通过简单状态机FSM（Finite state machine）就能实现，根本不用写一句代码；</li>
+<li>方便简洁的图表管理每个状态机；</li>
+<li>播放游戏，可以实时错误检查；</li>
+<li>集成的帮助，可以让我们快速查看行为说明；</li>
+<li>设置断点和单步执行状态</li>
+<li>可以编写自定义行为，让其出现在我们的行为列表</li>
+<li>支持各类插件配合使用，加速开发进程（例如Ngui, 2D Toolkit, A* Pathfinding等）</li>
+</ol>
+<p>##PlayMaker缺点：</p>
+<ol>
+<li>所有的功能必须对应一个状态，本来很简单的几句代码就能实行的动作，PlayMaker需要很多状态才能完成；</li>
+<li>虽说可以无需编写一个代码就能制作完整的游戏，但是对于制作商业级的游戏，PM就不靠谱了，太多的东西实现不了，不过官方一直在更新；</li>
+<li>网络功能还不完善，Bug太多；</li>
+</ol>
+<p>##PlayMaker界面：</p>
+<pre><code>--- FSM:当前正在编辑的FSM
+--- State:当前选中的State，可在其上添加Action，即相应的行为，例如：GetButtonDown
+--- Events:State的Event，即State进行切换时的条件
+--- Variables:变量；分为本地变量和全局变量。顾名思义，本地变量只可在当前FSM内使用，而全局变量(Global)在其他的FSM内也可使用，可以用与记录Horizontal以及Vertical的该变量
+</code></pre><p>##PlayMaker说明：</p>
+<pre><code>以现实中的生活例子做说明：
+我们一天中会做很多事情，但我们可以把这些事情归纳为几个状态：睡觉；吃饭；上课；打游戏等。如果把早上作为一天的开始，我们的生活逻辑是这样的：
+一开始我们在睡觉（初始状态），但设了个闹钟（触发条件）；到7点了，闹钟响起来（满足触发条件），我们去吃饭（状态转换）；吃饭完成（满足触发条件），我们去上课（状态转换）；
+下课铃响（满足触发条件），我们又去吃饭（状态转换）；吃完（满足触发条件）看看时间（新状态哦），如果还早（满足触发条件1），就打打游戏（状态转换）；
+如果时间不早了（满足触发条件2），就赶紧去上课（状态转换）；
+</code></pre><p>##步骤：</p>
+<ol>
+<li><p>创建Fsm</p>
+<p>在PlayMaker中，Fsm是被作为component（组件）添加给GameObject的。因此，一个Fsm可以被看做是一个独立的脚本程序，用以实现一个独立的功能。</p>
+<p>方法一：<br>从菜单PlayMaker &gt; PlayMaker Editor中打开PlayMaker编辑器。<br>选择需要添加FSM的gameObject，打开PlayMaker编辑器，在编辑器中按照提示点击鼠标右键，选择Add FSM，就为该gameObject附加了全新的FSM类型的组件（Component）：</p>
+<p>方法二：<br>直接在检视面板内AddComponent</p>
+</li>
+<li><p>编辑Fsm<br>1-取名字</p>
+<p>给当前的FSM冠以全新的名称。</p>
+<p>2-添加state</p>
+<p>给当前选中的state冠以一个十分酷炫吊炸天的EnglishNameState<br>在空白处点击鼠标右键，选择Add State，可以添加一个新的状态State 2。可以看到新的State 2上是没有触发条件的，这说明State 2完全没可能被激活，也就是完全不起作用。 可以在State 2上单击右键并选择Set as Start State，那么State 2就会变成我们的初始状态，State 1不起任何作用。</p>
+<h2 id="Action："><a href="#Action：" class="headerlink" title="Action："></a>Action：</h2><p>如果说使用Fsm、States、Events和Transitions可以搭出一个合理的交互逻辑的框架的话，这个交互逻辑在添加Action之前就完全是一个空架子，一个设计而已。<br>只有添加了Action，State才变得有意义，GameObject才会随着PlayMaker设计的这个逻辑来行动。</p>
+<p>PlayMaker有非常多的Action，而且还有很多开发者在为PlayMaker编写各式各样的第三方Action（可以理解成有人为PlayMaker这个插件开发插件），<br>一个Action通常执行一项或几项Unity3D的“操作”，比如获取某个GameObject的位置，在场景中新建一个Cube，改变一个材质球的颜色，为一个变量赋值等等</p>
+<p>大致分为以下七类</p>
+<ol>
+<li>用来获取参数/变量数值的</li>
+<li>用来改变参数/变量数值</li>
+<li>用来创建或删除游戏物体</li>
+<li>用来给游戏物体添加或删除组件</li>
+<li>用来执行某个组件（或脚本）中的特定功能函数（Function）</li>
+<li>用来触发Fsm事件</li>
+<li>对整个游戏系统进行控制，比如暂停、退出、载入场景等等</li>
+</ol>
+<p>##Events</p>
+<p>在State 2上点击右键，选择Add Transition &gt; FINISHED。（“FINISHED”也是一个系统事件，代表“本状态已经执行完所有操作的意思,也可以自己添加需要的Evnets），添加完Event之后，需要<br>用鼠标拖动报错的Event，拖出一条又细又短的线，然后拖给满足条件后你想执行的State；</p>
+<h2 id="System-Events："><a href="#System-Events：" class="headerlink" title="System Events："></a>System Events：</h2><pre><code>APPLICATION PAUSE：游戏暂停时
+APPLICATION QUIT：游戏退出时
+BECAME INVISIBLE：物体不可见时
+BECAME VISIBLE：物体可见时
+COLLISION ENTER：碰撞体进入时
+COLLICION ENTER 2D：2D碰撞体进入时
+COLLISION EXIT：碰撞体离开时
+COLLISION EXIT 2D：2D碰撞体离开时
+COLLISION STAY：碰撞体停留期间
+COLLISION STAY 2D：2D碰撞体停留期间
+CONTROLLER COLLIDER HIT：Controller类碰撞体被触碰时
+JOINT BREAK：骨骼断开时
+JOINT BREAK 2D：2D骨骼断开时
+LEVEL LOADED；关卡载入时
+MOUSE DOWN：鼠标在物体上被按下时
+MOUSE DRAG：鼠标在物体上被按下然后拖动时
+MOUSE ENTER：鼠标滑入物体时
+MOUSE EXIT：鼠标滑出物体时
+MOUSE OVER：鼠标悬停物体之上时
+MOUSE UP：鼠标在物体上按下并松开时（单击）
+MOUSE UP AS BUTTON：鼠标单击（作为按钮）
+PARTICLE COLLISION：粒子碰到碰撞体时
+TRIGGER ENTER：触发器被进入时
+TRIGGER ENTER 2D：2D触发器被进入时
+TRIGGER EXIT：触发器被离开时
+TRIGGER EXIT 2D：2D触发器被离开时
+TRIGGER STAY：触发器被停留期间
+TRIGGER STAY 2D：2D触发器被停留期间          
+</code></pre><h2 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h2><pre><code>变量是用来储存数据/数值的
+Unity3D自身有变量，不同的Component都有很多或私有（private）或公开（public）的变量，PlayMaker可以通过Action去调用它们（Get Property)或者直接对其赋值（Set Property)。
+PlayMaker自身也有变量，我们叫做Fsm变量，以区别于Unity3D的变量。调用其他Fsm的变量需要用到Get FSM Variable这个Action，为其他Fsm变量赋值要用到Set FSM Variable这个Action。
+</code></pre></li>
+</ol>
+<h2 id="PlayMaker入门介绍："><a href="#PlayMaker入门介绍：" class="headerlink" title="PlayMaker入门介绍："></a>PlayMaker入门介绍：</h2><p>(<a href="http://www.jianshu.com/p/ce791bef66bb" target="_blank" rel="noopener">http://www.jianshu.com/p/ce791bef66bb</a>)</p>
+<p>相关教学视频网站：<a href="https://www.youtube.com/watch?v=0shjECpuDIk&amp;list=PLYYCDVRRWC7cQsjx0oWtTIyS2Yj41cYnh（需要翻墙）" target="_blank" rel="noopener">https://www.youtube.com/watch?v=0shjECpuDIk&amp;list=PLYYCDVRRWC7cQsjx0oWtTIyS2Yj41cYnh（需要翻墙）</a>  </p>
+<p>PlayMaker关联脚本简单应用：<br><a href="http://blog.csdn.net/wuyt2008/article/details/51050489" target="_blank" rel="noopener">http://blog.csdn.net/wuyt2008/article/details/51050489</a><br>注：如有问题，欢迎来Q讨论</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/23/PlayMaker/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/11/23/FX Maker /" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/09/3DMaxAnimator/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +409,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

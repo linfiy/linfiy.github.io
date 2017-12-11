@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="《Shader入门精要》读书分享 - 1Agenda 渲染流水线 数学基础 CG语言基础 Unity Shader 结构 例子  渲染流水线图形编程历史目前最新的可编程图形硬件支持功能： 支持顶点和片段的可编程能力  支持IEEE32位的浮点运算（IEEE32是国际电工委员会置顶的浮点书表示方式，主要内容是用四个字节来表示浮点数，可以表示的数据的负数范围是(-22)^128~-2^127,2^-1">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/11/29/Shader_1/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="《Shader入门精要》读书分享 - 1Agenda 渲染流水线 数学基础 CG语言基础 Unity Shader 结构 例子  渲染流水线图形编程历史目前最新的可编程图形硬件支持功能： 支持顶点和片段的可编程能力  支持IEEE32位的浮点运算（IEEE32是国际电工委员会置顶的浮点书表示方式，主要内容是用四个字节来表示浮点数，可以表示的数据的负数范围是(-22)^128~-2^127,2^-1">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/JiaweiXing/MarkdownImage/master/Image/GPU%E6%B5%81%E6%B0%B4%E7%BA%BF.png">
+<meta property="og:image" content="https://github.com/JiaweiXing/MarkdownImage/raw/master/Image/%E8%AF%AD%E4%B9%89.png">
+<meta property="og:updated_time" content="2017-11-29T10:07:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="《Shader入门精要》读书分享 - 1Agenda 渲染流水线 数学基础 CG语言基础 Unity Shader 结构 例子  渲染流水线图形编程历史目前最新的可编程图形硬件支持功能： 支持顶点和片段的可编程能力  支持IEEE32位的浮点运算（IEEE32是国际电工委员会置顶的浮点书表示方式，主要内容是用四个字节来表示浮点数，可以表示的数据的负数范围是(-22)^128~-2^127,2^-1">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JiaweiXing/MarkdownImage/master/Image/GPU%E6%B5%81%E6%B0%B4%E7%BA%BF.png">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +157,293 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Shader_1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="《Shader入门精要》读书分享-1"><a href="#《Shader入门精要》读书分享-1" class="headerlink" title="《Shader入门精要》读书分享 - 1"></a>《Shader入门精要》读书分享 - 1</h2><h3 id="Agenda"><a href="#Agenda" class="headerlink" title="Agenda"></a>Agenda</h3><ul>
+<li>渲染流水线</li>
+<li>数学基础</li>
+<li>CG语言基础</li>
+<li>Unity Shader 结构</li>
+<li>例子</li>
+</ul>
+<h3 id="渲染流水线"><a href="#渲染流水线" class="headerlink" title="渲染流水线"></a>渲染流水线</h3><h4 id="图形编程历史"><a href="#图形编程历史" class="headerlink" title="图形编程历史"></a><a href="https://www.cnblogs.com/maple-share/p/5382228.html" target="_blank" rel="noopener">图形编程历史</a></h4><h4 id="目前最新的可编程图形硬件支持功能："><a href="#目前最新的可编程图形硬件支持功能：" class="headerlink" title="目前最新的可编程图形硬件支持功能："></a>目前最新的可编程图形硬件支持功能：</h4><ul>
+<li>支持顶点和片段的可编程能力 </li>
+<li>支持IEEE32位的浮点运算（IEEE32是国际电工委员会置顶的浮点书表示方式，主要内容是用四个字节来表示浮点数，可以表示的数据的负数范围是(-2<em>2)^128~-2^127,2^-127~2</em>2^128） </li>
+<li>支持四元向量和四阶矩阵 </li>
+<li>提供分支和循环的控制语句 </li>
+<li>具有高带宽的内存处理能力 </li>
+<li>支持1D,2D,3D的纹理查询和使用能力，而且速度非常快</li>
+<li>支持绘制到纹理功能<h4 id="渲染流水线-1"><a href="#渲染流水线-1" class="headerlink" title="渲染流水线"></a>渲染流水线</h4></li>
+<li><code>含义</code>： 计算机需要从一系列的顶点数据、纹理等信息出发、生成（或者说渲染）一张二维图像的过程。</li>
+<li>渲染流程分为三个阶段<ul>
+<li><code>应用程序阶段</code>：（CPU）<ul>
+<li><code>准备数据</code> eg.摄像机的位置、视椎体、场景中的模型和光源等等</li>
+<li><code>culling</code> 粗粒度剔除 eg.将不可见的物体剔除</li>
+<li><code>输出</code> 输出渲染所需的几何信息（点、线、三角面），即<code>渲染图元</code>。</li>
+</ul>
+</li>
+<li><code>几何阶段</code>：（GPU）<ul>
+<li><code>处理渲染图元</code>进行逐顶点、逐多边形的操作。顶点坐标转换到屏幕空间。</li>
+<li><code>输出</code>屏幕空间的二维顶点坐标、每个顶点对应的深度值、着色等相关信息。</li>
+</ul>
+</li>
+<li><code>光栅化阶段</code>：（GPU）<ul>
+<li>对上阶段的数据进行插值，再进行逐像素的处理。<h4 id="CPU与GPU之间的通信"><a href="#CPU与GPU之间的通信" class="headerlink" title="CPU与GPU之间的通信"></a>CPU与GPU之间的通信</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CPU流水线</code>（即应用阶段）<ul>
+<li>把数据加载到显存里</li>
+<li>设置渲染状态</li>
+<li>调用Draw Call（发起方是CPU，接收方是GPU）  </li>
+</ul>
+</li>
+<li><code>GPU流水线</code>（即几何阶段和光栅化阶段）<br><img src="https://raw.githubusercontent.com/JiaweiXing/MarkdownImage/master/Image/GPU%E6%B5%81%E6%B0%B4%E7%BA%BF.png" alt=""></li>
+<li><code>顶点着色器</code> ： 必选，可编程，通常用于实现顶点坐标的变换，计算顶点颜色。</li>
+<li><code>曲面细分着色器</code> ：可选，用于细分图元。</li>
+<li><code>几何着色器</code> ：可选，用于逐图元的着色操作,或者用于产生更多的图元。</li>
+<li><code>裁剪</code> ： 可配置，将不是摄像机视野中的顶点裁剪掉。</li>
+<li><code>屏幕映射</code> ： 不可编程，不可配置。把每个图元的坐标转换到屏幕坐标系。</li>
+<li><code>三角设置</code>和<code>三角形遍历</code>阶段都是固定函数的阶段。</li>
+<li><code>片元着色器</code> ：可编程，用于实现逐片元的着色操作。</li>
+<li><code>逐片元操作</code> ： 可配置，eg.颜色修改，深度缓，冲进行混合等。<h4 id="三种语言："><a href="#三种语言：" class="headerlink" title="三种语言："></a>三种语言：</h4></li>
+<li>OpenGl的GLSL </li>
+<li>Direct3D的HLSL </li>
+<li>NVIDIA的CG（CG编写的可同时兼容OpenGL和Direct平台）<h4 id="GPU流水线的两个重要阶段"><a href="#GPU流水线的两个重要阶段" class="headerlink" title="GPU流水线的两个重要阶段"></a>GPU流水线的两个重要阶段</h4></li>
+<li><code>顶点着色器</code><ul>
+<li>输入： GPU前端模块提取图元信息（顶点位置，法线向量，纹理坐标（uv））等。</li>
+<li>操作： 顶点坐标空间转换，法向量空间转换，光照计算等（现在光照计算一般在片段着色器，比较细），然后将计算好的数据传入指定寄存器中。 </li>
+</ul>
+</li>
+<li><code>片元着色器</code><ul>
+<li>输入：顶点着色器传入的数据。</li>
+<li>操作：光照计算，uv扰动，纹理采样等，最后输出当前片段的颜色给光栅化阶段（片段着色器是对每个独立的颜色进行操作的）。 <h3 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h3>推荐《3D数学基础：图形与游戏开发》</li>
+</ul>
+</li>
+<li><a href="http://www.jianshu.com/p/6cc5ff4826dd" target="_blank" rel="noopener">数学基础一</a></li>
+<li><a href="http://www.jianshu.com/p/8faf8389608d" target="_blank" rel="noopener">数学基础二</a><h3 id="CG语言基础"><a href="#CG语言基础" class="headerlink" title="CG语言基础"></a>CG语言基础</h3></li>
+<li>CG语言的特性：<br>Cg是一种类C的语言，他沿用了大量的C语言特性，但是也有不同之处。Cg语言是脚本性语言，不能编译，调试和断点；并且Cg语言的主要用途是绘制像素颜色到屏幕上，他不能处理文字类的内容。Cg语言对单精度浮点的数据类型是非常敏感的；Cg语言因为GPU的并发特性所以导致Cg语言的所有执行过程是并发式的；</li>
+<li><p>CG语法</p>
+<ul>
+<li><p>基础数据类型 ：</p>
+<ul>
+<li><p>float ： 32位浮点数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float _Angle = 1.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>half ： 16位浮点数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">half _Angle = 1.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>int ： 32位整形数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int _Angle = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fixed ： 12位浮点数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fixed _Angle = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bool ： 布尔数据，用于判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(_Angle == 0)</span><br><span class="line">&#123;</span><br><span class="line">  colors = diffuses.rgb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Sampler  纹理对象，6类 ： Sampler，sampler1D,sampler2D,sampler3D,samplerCUBE和samplerRECT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample2D _Diffuse;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>特殊的数据类型</p>
+<ul>
+<li><p>向量 ： 一共拥有4种维度的向量，1-4之间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float3 a = float3(0,1,2);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>矩阵 ： 行和列都不得大于4和不得小于1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float2*2 a = &#123;sin@,0,1,3&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>矩阵在赋值的时候一定要人为的分开行与行之间的关系，但是程序只认识顺序的赋值</code></p>
+<ul>
+<li><p>数组 ： 因为CG是显卡操作语，没有内存，所以声明的时候要制定大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float2 b[2];</span><br><span class="line">int arrayLen = b.length; // 结果是2</span><br><span class="line">float m[3][4];</span><br><span class="line">arrayLen = m.length;// 结果是3；</span><br><span class="line">arrayLen = m[1].length;// 结果是4；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体 ： 数据封装作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> struct a2v &#123;</span><br><span class="line">float4 vertex : POSITION;</span><br><span class="line">float3 normal : NORMAL;</span><br><span class="line">float4 texcoord : TEXCOORD0;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表达式和控制语句</p>
+<ul>
+<li>关系操作符 ：&lt;,&gt;,&lt;=,&gt;=，!=,==,</li>
+<li>逻辑操作符 ：&amp;&amp;，||，！ </li>
+<li>数学操作符 ：+，—，*，/，% </li>
+<li><p>移位操作符 ：&gt;&gt; </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int2 a = int2(0.0,0.0); </span><br><span class="line">int2 b = a&gt;&gt;1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Swizzle操作符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float4(a, b, c, d).xyz    等价于  float3(a, b, c)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>控制流语句 ：if ，if-else while ，for，break</p>
+</li>
+</ul>
+</li>
+<li><p>点操作符：只针对向量和结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v2f o;</span><br><span class="line">  o.pos = UnityObjectToClipPos(v.vertex);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>行参修饰词：</p>
+<ul>
+<li>in: 表示当前行参是只能输入的； </li>
+<li>out：表示当前行参用来输出数据的; </li>
+<li>inout: 表示可以进行输入和输出；</li>
+</ul>
+</li>
+<li>离散数据图元信息：<code>uniform</code><ul>
+<li>只读性，只要标有uniform标签的变量，这个变量我们就不能初始化也不能修改其内容；</li>
+<li>使用范围特性，只能存在于入口函数的行参上或者是全局的变量身上； </li>
+<li>他只能支持引擎向着色器传入的数据，不能向外提交数据；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>语义<br><img src="https://github.com/JiaweiXing/MarkdownImage/raw/master/Image/%E8%AF%AD%E4%B9%89.png" alt=""><h3 id="Unity-Shader-结构"><a href="#Unity-Shader-结构" class="headerlink" title="Unity Shader 结构"></a>Unity Shader 结构</h3></li>
+</ul>
+</li>
+<li>看项目中“UnityShader结构.shader”<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3></li>
+<li>在项目中</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/29/Shader_1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/12/11/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/23/DLL&Reflection/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +467,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

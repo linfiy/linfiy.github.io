@@ -223,6 +223,876 @@
 
 
   
+    <article id="post-Shader_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="《Shader入门精要》读书分享-1"><a href="#《Shader入门精要》读书分享-1" class="headerlink" title="《Shader入门精要》读书分享 - 1"></a>《Shader入门精要》读书分享 - 1</h2><h3 id="Agenda"><a href="#Agenda" class="headerlink" title="Agenda"></a>Agenda</h3><ul>
+<li>渲染流水线</li>
+<li>数学基础</li>
+<li>CG语言基础</li>
+<li>Unity Shader 结构</li>
+<li>例子</li>
+</ul>
+<h3 id="渲染流水线"><a href="#渲染流水线" class="headerlink" title="渲染流水线"></a>渲染流水线</h3><h4 id="图形编程历史"><a href="#图形编程历史" class="headerlink" title="图形编程历史"></a><a href="https://www.cnblogs.com/maple-share/p/5382228.html" target="_blank" rel="noopener">图形编程历史</a></h4><h4 id="目前最新的可编程图形硬件支持功能："><a href="#目前最新的可编程图形硬件支持功能：" class="headerlink" title="目前最新的可编程图形硬件支持功能："></a>目前最新的可编程图形硬件支持功能：</h4><ul>
+<li>支持顶点和片段的可编程能力 </li>
+<li>支持IEEE32位的浮点运算（IEEE32是国际电工委员会置顶的浮点书表示方式，主要内容是用四个字节来表示浮点数，可以表示的数据的负数范围是(-2<em>2)^128~-2^127,2^-127~2</em>2^128） </li>
+<li>支持四元向量和四阶矩阵 </li>
+<li>提供分支和循环的控制语句 </li>
+<li>具有高带宽的内存处理能力 </li>
+<li>支持1D,2D,3D的纹理查询和使用能力，而且速度非常快</li>
+<li>支持绘制到纹理功能<h4 id="渲染流水线-1"><a href="#渲染流水线-1" class="headerlink" title="渲染流水线"></a>渲染流水线</h4></li>
+<li><code>含义</code>： 计算机需要从一系列的顶点数据、纹理等信息出发、生成（或者说渲染）一张二维图像的过程。</li>
+<li>渲染流程分为三个阶段<ul>
+<li><code>应用程序阶段</code>：（CPU）<ul>
+<li><code>准备数据</code> eg.摄像机的位置、视椎体、场景中的模型和光源等等</li>
+<li><code>culling</code> 粗粒度剔除 eg.将不可见的物体剔除</li>
+<li><code>输出</code> 输出渲染所需的几何信息（点、线、三角面），即<code>渲染图元</code>。</li>
+</ul>
+</li>
+<li><code>几何阶段</code>：（GPU）<ul>
+<li><code>处理渲染图元</code>进行逐顶点、逐多边形的操作。顶点坐标转换到屏幕空间。</li>
+<li><code>输出</code>屏幕空间的二维顶点坐标、每个顶点对应的深度值、着色等相关信息。</li>
+</ul>
+</li>
+<li><code>光栅化阶段</code>：（GPU）<ul>
+<li>对上阶段的数据进行插值，再进行逐像素的处理。<h4 id="CPU与GPU之间的通信"><a href="#CPU与GPU之间的通信" class="headerlink" title="CPU与GPU之间的通信"></a>CPU与GPU之间的通信</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CPU流水线</code>（即应用阶段）<ul>
+<li>把数据加载到显存里</li>
+<li>设置渲染状态</li>
+<li>调用Draw Call（发起方是CPU，接收方是GPU）  </li>
+</ul>
+</li>
+<li><code>GPU流水线</code>（即几何阶段和光栅化阶段）<br><img src="https://raw.githubusercontent.com/JiaweiXing/MarkdownImage/master/Image/GPU%E6%B5%81%E6%B0%B4%E7%BA%BF.png" alt=""></li>
+<li><code>顶点着色器</code> ： 必选，可编程，通常用于实现顶点坐标的变换，计算顶点颜色。</li>
+<li><code>曲面细分着色器</code> ：可选，用于细分图元。</li>
+<li><code>几何着色器</code> ：可选，用于逐图元的着色操作,或者用于产生更多的图元。</li>
+<li><code>裁剪</code> ： 可配置，将不是摄像机视野中的顶点裁剪掉。</li>
+<li><code>屏幕映射</code> ： 不可编程，不可配置。把每个图元的坐标转换到屏幕坐标系。</li>
+<li><code>三角设置</code>和<code>三角形遍历</code>阶段都是固定函数的阶段。</li>
+<li><code>片元着色器</code> ：可编程，用于实现逐片元的着色操作。</li>
+<li><code>逐片元操作</code> ： 可配置，eg.颜色修改，深度缓，冲进行混合等。<h4 id="三种语言："><a href="#三种语言：" class="headerlink" title="三种语言："></a>三种语言：</h4></li>
+<li>OpenGl的GLSL </li>
+<li>Direct3D的HLSL </li>
+<li>NVIDIA的CG（CG编写的可同时兼容OpenGL和Direct平台）<h4 id="GPU流水线的两个重要阶段"><a href="#GPU流水线的两个重要阶段" class="headerlink" title="GPU流水线的两个重要阶段"></a>GPU流水线的两个重要阶段</h4></li>
+<li><code>顶点着色器</code><ul>
+<li>输入： GPU前端模块提取图元信息（顶点位置，法线向量，纹理坐标（uv））等。</li>
+<li>操作： 顶点坐标空间转换，法向量空间转换，光照计算等（现在光照计算一般在片段着色器，比较细），然后将计算好的数据传入指定寄存器中。 </li>
+</ul>
+</li>
+<li><code>片元着色器</code><ul>
+<li>输入：顶点着色器传入的数据。</li>
+<li>操作：光照计算，uv扰动，纹理采样等，最后输出当前片段的颜色给光栅化阶段（片段着色器是对每个独立的颜色进行操作的）。 <h3 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h3>推荐《3D数学基础：图形与游戏开发》</li>
+</ul>
+</li>
+<li><a href="http://www.jianshu.com/p/6cc5ff4826dd" target="_blank" rel="noopener">数学基础一</a></li>
+<li><a href="http://www.jianshu.com/p/8faf8389608d" target="_blank" rel="noopener">数学基础二</a><h3 id="CG语言基础"><a href="#CG语言基础" class="headerlink" title="CG语言基础"></a>CG语言基础</h3></li>
+<li>CG语言的特性：<br>Cg是一种类C的语言，他沿用了大量的C语言特性，但是也有不同之处。Cg语言是脚本性语言，不能编译，调试和断点；并且Cg语言的主要用途是绘制像素颜色到屏幕上，他不能处理文字类的内容。Cg语言对单精度浮点的数据类型是非常敏感的；Cg语言因为GPU的并发特性所以导致Cg语言的所有执行过程是并发式的；</li>
+<li><p>CG语法</p>
+<ul>
+<li><p>基础数据类型 ：</p>
+<ul>
+<li><p>float ： 32位浮点数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float _Angle = 1.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>half ： 16位浮点数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">half _Angle = 1.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>int ： 32位整形数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int _Angle = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fixed ： 12位浮点数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fixed _Angle = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bool ： 布尔数据，用于判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(_Angle == 0)</span><br><span class="line">&#123;</span><br><span class="line">  colors = diffuses.rgb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Sampler  纹理对象，6类 ： Sampler，sampler1D,sampler2D,sampler3D,samplerCUBE和samplerRECT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample2D _Diffuse;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>特殊的数据类型</p>
+<ul>
+<li><p>向量 ： 一共拥有4种维度的向量，1-4之间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float3 a = float3(0,1,2);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>矩阵 ： 行和列都不得大于4和不得小于1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float2*2 a = &#123;sin@,0,1,3&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>矩阵在赋值的时候一定要人为的分开行与行之间的关系，但是程序只认识顺序的赋值</code></p>
+<ul>
+<li><p>数组 ： 因为CG是显卡操作语，没有内存，所以声明的时候要制定大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float2 b[2];</span><br><span class="line">int arrayLen = b.length; // 结果是2</span><br><span class="line">float m[3][4];</span><br><span class="line">arrayLen = m.length;// 结果是3；</span><br><span class="line">arrayLen = m[1].length;// 结果是4；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构体 ： 数据封装作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> struct a2v &#123;</span><br><span class="line">float4 vertex : POSITION;</span><br><span class="line">float3 normal : NORMAL;</span><br><span class="line">float4 texcoord : TEXCOORD0;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表达式和控制语句</p>
+<ul>
+<li>关系操作符 ：&lt;,&gt;,&lt;=,&gt;=，!=,==,</li>
+<li>逻辑操作符 ：&amp;&amp;，||，！ </li>
+<li>数学操作符 ：+，—，*，/，% </li>
+<li><p>移位操作符 ：&gt;&gt; </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int2 a = int2(0.0,0.0); </span><br><span class="line">int2 b = a&gt;&gt;1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Swizzle操作符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float4(a, b, c, d).xyz    等价于  float3(a, b, c)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>控制流语句 ：if ，if-else while ，for，break</p>
+</li>
+</ul>
+</li>
+<li><p>点操作符：只针对向量和结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v2f o;</span><br><span class="line">  o.pos = UnityObjectToClipPos(v.vertex);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>行参修饰词：</p>
+<ul>
+<li>in: 表示当前行参是只能输入的； </li>
+<li>out：表示当前行参用来输出数据的; </li>
+<li>inout: 表示可以进行输入和输出；</li>
+</ul>
+</li>
+<li>离散数据图元信息：<code>uniform</code><ul>
+<li>只读性，只要标有uniform标签的变量，这个变量我们就不能初始化也不能修改其内容；</li>
+<li>使用范围特性，只能存在于入口函数的行参上或者是全局的变量身上； </li>
+<li>他只能支持引擎向着色器传入的数据，不能向外提交数据；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>语义<br><img src="https://github.com/JiaweiXing/MarkdownImage/raw/master/Image/%E8%AF%AD%E4%B9%89.png" alt=""><h3 id="Unity-Shader-结构"><a href="#Unity-Shader-结构" class="headerlink" title="Unity Shader 结构"></a>Unity Shader 结构</h3></li>
+</ul>
+</li>
+<li>看项目中“UnityShader结构.shader”<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3></li>
+<li>在项目中</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/29/Shader_1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-DLL&amp;Reflection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###一.DLL<br>这些.dll库文件一般都放在Assets/Plugins/目录下</p>
+<p><a href="http://www.cppblog.com/amazon/archive/2009/09/04/95318.html" target="_blank" rel="noopener">lib/.a和dll/.so的区别</a></p>
+<p>（1）lib是编译时用到的，dll是运行时用到的。如果要完成源代码的编译，只需要lib；如果要使动态链接的程序运行起来，只需要dll。</p>
+<p>（2）如果有dll文件，那么lib一般是一些索引信息，记录了dll中函数的入口和位置，dll中是函数的具体内容；如果只有lib文件，那么这个lib文件是静态编译出来的，索引和实现都在其中。使用静态编译的lib文件，在运行程序时不需要再挂动态库，缺点是导致应用程序比较大，而且失去了动态库的灵活性，发布新版本时要发布新的应用程序才行。</p>
+<p>参考:</p>
+<p>(我的简书里的文章,有流程)<a href="http://www.jianshu.com/p/d0dfef0d6da0" target="_blank" rel="noopener">C#与Unity的DLL交互</a></p>
+<p><a href="http://blog.csdn.net/qq_33747722/article/details/53608616" target="_blank" rel="noopener">C++ 写DLL</a><br><a href="http://blog.csdn.net/qq_15267341/article/details/51747000" target="_blank" rel="noopener">如何将Unity中的脚本文件转为dll文件</a></p>
+<p>下面这几个也很有用</p>
+<p>(了解)<a href="http://blog.csdn.net/fengbingchun/article/details/43956673" target="_blank" rel="noopener">VS中的dumpbin的使用</a></p>
+<p>(实用)<a href="http://blog.csdn.net/mseol/article/details/54381584" target="_blank" rel="noopener">反编译工具dotPeek</a></p>
+<p>(了解)<a href="https://www.zhihu.com/question/48002587/answer/108677110" target="_blank" rel="noopener">关于extern扩展非静态的方法</a></p>
+<p>(官方参考)<a href="https://docs.unity3d.com/Manual/Plugins.html" target="_blank" rel="noopener">官方文档托管dll</a></p>
+<p>###二.Reflection(C#自带的一个库,查看dll里的内容)<br> <a href="http://www.cnblogs.com/Stephenchao/p/4481995.html" target="_blank" rel="noopener">详解C#中的反射</a> ;</p>
+<p> <a href="https://www.cnblogs.com/yaozhenfa/p/CSharp_Reflection_1.html" target="_blank" rel="noopener">C#之玩转反射</a>;</p>
+<p> <a href="http://blog.csdn.net/jiankunking/article/details/50758924" target="_blank" rel="noopener">C#反射详解</a></p>
+<hr>
+<p>业余爱好<a href="http://www.cnblogs.com/lixiang-share/p/5979981.html" target="_blank" rel="noopener">Unity防破解,加密Dll与Key保护</a></p>
+<p>###欢迎关注我的简书账号,时不时有些个人的学习笔记和心得,以及一些优秀的文章搬运<br><a href="http://www.jianshu.com/u/02a9742375c4" target="_blank" rel="noopener">wang_liang</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/23/DLL&Reflection/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-FX Maker " class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="FXMaker"><a href="#FXMaker" class="headerlink" title="FXMaker"></a>FXMaker</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><pre><code>FXMaker是一款Unity特效制作插件。不但有超过300种效果预制体，还可以自己制作效果。包含Mesh Effect 和Particle Effect。  
+优点：资源库大，可以将消耗资源非常多的粒子效果转换为帧动画效果。当然也可以直接用不转帧动画的效果，这种效果是画面最好的，但是对显卡开销大。帧动画显卡开销小，占内存大，适合移动平台。  
+</code></pre><h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><p><a href="FXMaker使用手册.docx">见FXMaker使用手册</a>   </p>
+<h3 id="特效转换"><a href="#特效转换" class="headerlink" title="特效转换"></a>特效转换</h3><ul>
+<li>将消耗资源非常多的粒子效果转换为帧动画效果。   </li>
+</ul>
+<ol>
+<li>选中一个粒子特效<br><img src="PICTURE/1.JPG" alt="1"></li>
+<li>右键点击UI界面中此物体，选择save prefab<br><img src="PICTURE/2.PNG" alt="2"></li>
+<li>选择要保存的位置，点击save<br><img src="PICTURE/3.PNG" alt="3"></li>
+<li>到对应文件夹找到保存的项目，点击右键，选择BuildSprite<br><img src="PICTURE/4.PNG" alt="4"></li>
+<li>通过鼠标滚轮放大缩小使特效完全位于红色方框以内<br><img src="PICTURE/5.PNG" alt="5"></li>
+<li>调整相应参数后，点击Build Sprite创建帧动画<br><img src="PICTURE/6.PNG" alt="6"></li>
+<li>创建成功，新特效位于原特效文件夹<br><img src="PICTURE/7.PNG" alt="7"></li>
+<li>右键选择Export，导出特效，会生成一个UnityPackage文件，导入到项目中就可以使用了<br><img src="PICTURE/8.PNG" alt="8"><h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3></li>
+<li>刚导入的项目没有1 Project文件夹，大家自己新创建一个就可以了<br><img src="PICTURE/9.PNG" alt="9"><br><img src="PICTURE/10.PNG" alt="10">    </li>
+<li>Build Sprite时会报错，因为项目中没有USerSprite文件夹，需要新创建一个<br><img src="PICTURE/11.PNG" alt="11">    <h2 id="AnimationCurve"><a href="#AnimationCurve" class="headerlink" title="AnimationCurve"></a>AnimationCurve</h2><a href="AnimationCurve.md">AnimationCurve</a>使用示例</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/23/FX Maker /">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-PlayMaker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> #PlayMaker简介：</p>
+<p>PlayMaker是由第三方软件开发商Hotong Games开发完成。它的Logo是一个中文的“玩”字（PS：看来中国文化声名远播）。它既是一个可视化脚本工具，又是一个分层逻辑框架。<br>设计师、程序员使用PlayMaker能够很快的完成游戏原型动作，既适合独立开发者，又特别适合团队合作。</p>
+<p>##PlayMaker的优点：</p>
+<ol>
+<li>很多动作行为（例如：跑，跳，攻击等）只需要通过简单状态机FSM（Finite state machine）就能实现，根本不用写一句代码；</li>
+<li>方便简洁的图表管理每个状态机；</li>
+<li>播放游戏，可以实时错误检查；</li>
+<li>集成的帮助，可以让我们快速查看行为说明；</li>
+<li>设置断点和单步执行状态</li>
+<li>可以编写自定义行为，让其出现在我们的行为列表</li>
+<li>支持各类插件配合使用，加速开发进程（例如Ngui, 2D Toolkit, A* Pathfinding等）</li>
+</ol>
+<p>##PlayMaker缺点：</p>
+<ol>
+<li>所有的功能必须对应一个状态，本来很简单的几句代码就能实行的动作，PlayMaker需要很多状态才能完成；</li>
+<li>虽说可以无需编写一个代码就能制作完整的游戏，但是对于制作商业级的游戏，PM就不靠谱了，太多的东西实现不了，不过官方一直在更新；</li>
+<li>网络功能还不完善，Bug太多；</li>
+</ol>
+<p>##PlayMaker界面：</p>
+<pre><code>--- FSM:当前正在编辑的FSM
+--- State:当前选中的State，可在其上添加Action，即相应的行为，例如：GetButtonDown
+--- Events:State的Event，即State进行切换时的条件
+--- Variables:变量；分为本地变量和全局变量。顾名思义，本地变量只可在当前FSM内使用，而全局变量(Global)在其他的FSM内也可使用，可以用与记录Horizontal以及Vertical的该变量
+</code></pre><p>##PlayMaker说明：</p>
+<pre><code>以现实中的生活例子做说明：
+我们一天中会做很多事情，但我们可以把这些事情归纳为几个状态：睡觉；吃饭；上课；打游戏等。如果把早上作为一天的开始，我们的生活逻辑是这样的：
+一开始我们在睡觉（初始状态），但设了个闹钟（触发条件）；到7点了，闹钟响起来（满足触发条件），我们去吃饭（状态转换）；吃饭完成（满足触发条件），我们去上课（状态转换）；
+下课铃响（满足触发条件），我们又去吃饭（状态转换）；吃完（满足触发条件）看看时间（新状态哦），如果还早（满足触发条件1），就打打游戏（状态转换）；
+如果时间不早了（满足触发条件2），就赶紧去上课（状态转换）；
+</code></pre><p>##步骤：</p>
+<ol>
+<li><p>创建Fsm</p>
+<p>在PlayMaker中，Fsm是被作为component（组件）添加给GameObject的。因此，一个Fsm可以被看做是一个独立的脚本程序，用以实现一个独立的功能。</p>
+<p>方法一：<br>从菜单PlayMaker &gt; PlayMaker Editor中打开PlayMaker编辑器。<br>选择需要添加FSM的gameObject，打开PlayMaker编辑器，在编辑器中按照提示点击鼠标右键，选择Add FSM，就为该gameObject附加了全新的FSM类型的组件（Component）：</p>
+<p>方法二：<br>直接在检视面板内AddComponent</p>
+</li>
+<li><p>编辑Fsm<br>1-取名字</p>
+<p>给当前的FSM冠以全新的名称。</p>
+<p>2-添加state</p>
+<p>给当前选中的state冠以一个十分酷炫吊炸天的EnglishNameState<br>在空白处点击鼠标右键，选择Add State，可以添加一个新的状态State 2。可以看到新的State 2上是没有触发条件的，这说明State 2完全没可能被激活，也就是完全不起作用。 可以在State 2上单击右键并选择Set as Start State，那么State 2就会变成我们的初始状态，State 1不起任何作用。</p>
+<h2 id="Action："><a href="#Action：" class="headerlink" title="Action："></a>Action：</h2><p>如果说使用Fsm、States、Events和Transitions可以搭出一个合理的交互逻辑的框架的话，这个交互逻辑在添加Action之前就完全是一个空架子，一个设计而已。<br>只有添加了Action，State才变得有意义，GameObject才会随着PlayMaker设计的这个逻辑来行动。</p>
+<p>PlayMaker有非常多的Action，而且还有很多开发者在为PlayMaker编写各式各样的第三方Action（可以理解成有人为PlayMaker这个插件开发插件），<br>一个Action通常执行一项或几项Unity3D的“操作”，比如获取某个GameObject的位置，在场景中新建一个Cube，改变一个材质球的颜色，为一个变量赋值等等</p>
+<p>大致分为以下七类</p>
+<ol>
+<li>用来获取参数/变量数值的</li>
+<li>用来改变参数/变量数值</li>
+<li>用来创建或删除游戏物体</li>
+<li>用来给游戏物体添加或删除组件</li>
+<li>用来执行某个组件（或脚本）中的特定功能函数（Function）</li>
+<li>用来触发Fsm事件</li>
+<li>对整个游戏系统进行控制，比如暂停、退出、载入场景等等</li>
+</ol>
+<p>##Events</p>
+<p>在State 2上点击右键，选择Add Transition &gt; FINISHED。（“FINISHED”也是一个系统事件，代表“本状态已经执行完所有操作的意思,也可以自己添加需要的Evnets），添加完Event之后，需要<br>用鼠标拖动报错的Event，拖出一条又细又短的线，然后拖给满足条件后你想执行的State；</p>
+<h2 id="System-Events："><a href="#System-Events：" class="headerlink" title="System Events："></a>System Events：</h2><pre><code>APPLICATION PAUSE：游戏暂停时
+APPLICATION QUIT：游戏退出时
+BECAME INVISIBLE：物体不可见时
+BECAME VISIBLE：物体可见时
+COLLISION ENTER：碰撞体进入时
+COLLICION ENTER 2D：2D碰撞体进入时
+COLLISION EXIT：碰撞体离开时
+COLLISION EXIT 2D：2D碰撞体离开时
+COLLISION STAY：碰撞体停留期间
+COLLISION STAY 2D：2D碰撞体停留期间
+CONTROLLER COLLIDER HIT：Controller类碰撞体被触碰时
+JOINT BREAK：骨骼断开时
+JOINT BREAK 2D：2D骨骼断开时
+LEVEL LOADED；关卡载入时
+MOUSE DOWN：鼠标在物体上被按下时
+MOUSE DRAG：鼠标在物体上被按下然后拖动时
+MOUSE ENTER：鼠标滑入物体时
+MOUSE EXIT：鼠标滑出物体时
+MOUSE OVER：鼠标悬停物体之上时
+MOUSE UP：鼠标在物体上按下并松开时（单击）
+MOUSE UP AS BUTTON：鼠标单击（作为按钮）
+PARTICLE COLLISION：粒子碰到碰撞体时
+TRIGGER ENTER：触发器被进入时
+TRIGGER ENTER 2D：2D触发器被进入时
+TRIGGER EXIT：触发器被离开时
+TRIGGER EXIT 2D：2D触发器被离开时
+TRIGGER STAY：触发器被停留期间
+TRIGGER STAY 2D：2D触发器被停留期间          
+</code></pre><h2 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h2><pre><code>变量是用来储存数据/数值的
+Unity3D自身有变量，不同的Component都有很多或私有（private）或公开（public）的变量，PlayMaker可以通过Action去调用它们（Get Property)或者直接对其赋值（Set Property)。
+PlayMaker自身也有变量，我们叫做Fsm变量，以区别于Unity3D的变量。调用其他Fsm的变量需要用到Get FSM Variable这个Action，为其他Fsm变量赋值要用到Set FSM Variable这个Action。
+</code></pre></li>
+</ol>
+<h2 id="PlayMaker入门介绍："><a href="#PlayMaker入门介绍：" class="headerlink" title="PlayMaker入门介绍："></a>PlayMaker入门介绍：</h2><p>(<a href="http://www.jianshu.com/p/ce791bef66bb" target="_blank" rel="noopener">http://www.jianshu.com/p/ce791bef66bb</a>)</p>
+<p>相关教学视频网站：<a href="https://www.youtube.com/watch?v=0shjECpuDIk&amp;list=PLYYCDVRRWC7cQsjx0oWtTIyS2Yj41cYnh（需要翻墙）" target="_blank" rel="noopener">https://www.youtube.com/watch?v=0shjECpuDIk&amp;list=PLYYCDVRRWC7cQsjx0oWtTIyS2Yj41cYnh（需要翻墙）</a>  </p>
+<p>PlayMaker关联脚本简单应用：<br><a href="http://blog.csdn.net/wuyt2008/article/details/51050489" target="_blank" rel="noopener">http://blog.csdn.net/wuyt2008/article/details/51050489</a><br>注：如有问题，欢迎来Q讨论</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/23/PlayMaker/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-3DMaxAnimator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="3d-max中曲线编辑器的使用"><a href="#3d-max中曲线编辑器的使用" class="headerlink" title="3d max中曲线编辑器的使用"></a>3d max中曲线编辑器的使用</h1><h2 id="一-曲线编辑器介绍"><a href="#一-曲线编辑器介绍" class="headerlink" title="一. 曲线编辑器介绍"></a>一. 曲线编辑器介绍</h2><p>曲线编辑器是一种“轨迹视图”模式，用于以图表上的功能曲线来表示运动。 该模式可以使运动的插值以及软件在关键帧之间创建的对象变换直观化。 使用曲线上关键点的切线控制柄，您可以轻松观看和控制场景中对象的运动和动画。</p>
+<h2 id="二-曲线编辑器的使用"><a href="#二-曲线编辑器的使用" class="headerlink" title="二.曲线编辑器的使用"></a>二.曲线编辑器的使用</h2><p>创建物体-&gt;右键-&gt;曲线编辑器</p>
+<h2 id="三-添加关键帧以及关键帧设置"><a href="#三-添加关键帧以及关键帧设置" class="headerlink" title="三.添加关键帧以及关键帧设置"></a>三.添加关键帧以及关键帧设置</h2><p>创建关键帧，在曲线上点击会生成关键帧，右键点击生成的关键帧，会出现详细的参数设置</p>
+<h2 id="四-设置运动曲线"><a href="#四-设置运动曲线" class="headerlink" title="四.设置运动曲线"></a>四.设置运动曲线</h2><p>根据物体的运动规律，设置相应的运动曲线，可以控制物体从一个关键帧移动到下一个关键帧的运动规律</p>
+<h2 id="五-超出范围动画"><a href="#五-超出范围动画" class="headerlink" title="五.超出范围动画"></a>五.超出范围动画</h2><p>曲线编辑器-&gt;编辑-&gt;控制器-&gt;超出范围<br>选择好自己想要的模式之后，动画会在超出帧数之后自动按照所选的模式运行下去</p>
+<h2 id="六-导出动画到unity"><a href="#六-导出动画到unity" class="headerlink" title="六.导出动画到unity"></a>六.导出动画到unity</h2><p>动画中的运动规律<br>(./<a href="https://wenku.baidu.com/view/320e7c88d5bbfd0a78567311.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/320e7c88d5bbfd0a78567311.html</a>) </p>
+<p>上面介绍了制作动画的时候要遵守的运动规律</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/09/3DMaxAnimator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-BitmapFont" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bitmap字体（图片字体）"><a href="#Bitmap字体（图片字体）" class="headerlink" title="Bitmap字体（图片字体）"></a>Bitmap字体（图片字体）</h1><ul>
+<li><p>工具: <a href="http://u3d.as/4bZ" target="_blank" rel="noopener">Font Setter Packer</a> $9</p>
+</li>
+<li><p>参考文章: <a href="http://www.jianshu.com/p/6bdd41a1bcfd" target="_blank" rel="noopener">独立开发者必备技能 － 为Unity游戏制作Bitmap字体（图片字体）</a></p>
+</li>
+<li>Unity 版本 5.4.3f1</li>
+</ul>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="1-导入-Font-Setter-Packer。"><a href="#1-导入-Font-Setter-Packer。" class="headerlink" title="1. 导入 Font Setter Packer。"></a>1. 导入 Font Setter Packer。</h3><p><strong>Note</strong>: 如果项目里不导入包，而只是使用打包后的图片字体的话，在手机上可能显示不出来，那样需要修改材质球的Shader 为 GUI。</p>
+<h3 id="2-图片修改-Inspector"><a href="#2-图片修改-Inspector" class="headerlink" title="2. 图片修改 Inspector"></a>2. 图片修改 Inspector</h3><p><img src="http://upload-images.jianshu.io/upload_images/711226-2ae8ae80bc8fa888.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>Texture Type =&gt; <code>Advanced</code></li>
+<li>Read/Write Enabled =&gt; <code>true</code></li>
+<li>Alpha is Transparent =&gt; <code>true</code></li>
+<li>Default/Format =&gt; <code>Automatic Truecolor</code></li>
+<li>点击 Apply 保存</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/711226-d708e97efbd5f5e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左侧是原始的参考文件，右侧是 PS后的文件"></p>
+<p><strong>Note</strong>: <strong>原图片(.png)</strong>的大小一定要是 2^n。否则会在下一步弹出报错 <code>Error: Font Map is NPOT, Change the import Settings property for NPOT map to &#39;None&#39;</code>。</p>
+<h3 id="3-选择-Window-下的-Font-Editor-进行编辑"><a href="#3-选择-Window-下的-Font-Editor-进行编辑" class="headerlink" title="3. 选择 Window 下的 Font Editor 进行编辑"></a>3. 选择 Window 下的 Font Editor 进行编辑</h3><p>打开图片的两种方式:</p>
+<ol>
+<li>在弹出窗口的右侧选框（New Font From Image[Texture2D]）中选择刚才修改过的图片。</li>
+<li>或者点选窗口菜单栏的 file/creatte font from image</li>
+</ol>
+<h3 id="4-选取文字对应的图片"><a href="#4-选取文字对应的图片" class="headerlink" title="4. 选取文字对应的图片"></a>4. 选取文字对应的图片</h3><p>两种方法</p>
+<pre><code>1. 自动选取：Tools/Auto-set gylphs。每次自动选择后，键入 Character 中需要的文字，点击 Next，如果出现不需要的文字（或杂质），可以点击 Skip 跳过。点击 Stop 结束。
+2. 手动选取：点击右侧 `+1`，调整选取大小并设置 Character。
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/711226-4b1dc51488592300.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="TIM图片20171028104932.png"></p>
+<p><strong>Note</strong>: 图片文字整齐的字体适合用手动选取，图片文字凌乱的适合用自动选取。<br><strong>Note</strong>: 框选的字体需要设置锚点，勾选 Glyph Pivot。 锚点决定 Text 组件该从哪个地方渲染这个字体。锚点不对齐文字就很不整齐。</p>
+<h3 id="5-选取完之后，点击-Tools-Pack-Font-Map-进行设置。再点击-Pack-进行打包。最后点击-Accept-Pack-Result。"><a href="#5-选取完之后，点击-Tools-Pack-Font-Map-进行设置。再点击-Pack-进行打包。最后点击-Accept-Pack-Result。" class="headerlink" title="5. 选取完之后，点击 Tools/Pack Font Map 进行设置。再点击 Pack 进行打包。最后点击 Accept Pack Result。"></a>5. 选取完之后，点击 <code>Tools/Pack Font Map</code> 进行设置。再点击 <code>Pack</code> 进行打包。最后点击 <code>Accept Pack Result</code>。</h3><p>生成的文件包括一个 .fontsetting，一个 .mat 和一个 .png。<br>.fontsetting 的 Inspector 面板中可以设置行距以及字间距。注意改名时不要让其引用的材质丢失</p>
+<p><strong>Note</strong>: 点击 Pack 之后就已经进行打包了，此时文件已经写入当前文件夹。字体文件就可以使用了。最后的 <code>Accept Pack Result</code> 按钮有些情况点击会报错，不过不影响使用。<br><strong>Note</strong>: Pack 会生成一些中间文件，可以删掉。最后只保留名字最后带<code>(Packed)</code> 的文件就可以了<br><strong>Note</strong>: 如果字体呈现黑色，则需要设置 UnityEngine.UI.Text 组件上的 Color 为白色</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/711226-b03b33626331eb8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/09/BitmapFont/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-3DMax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="3ds-max"><a href="#3ds-max" class="headerlink" title="3ds-max"></a>3ds-max</h1><blockquote>
+<p> 3D Studio Max，常简称为3d Max，是一款基于PC系统的三维动画渲染和制作软件。</p>
+</blockquote>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p> <a href="http://www.3dmax8.com/3dmax/ruanjian/3dmax/" target="_blank" rel="noopener">下载地址</a><br><br>安装及激活地址 <a href="http://www.3dmax8.com/3dmax/2013/0406/5353_3.html" target="_blank" rel="noopener">http://www.3dmax8.com/3dmax/2013/0406/5353_3.html</a></p>
+<ol>
+<li>下载相应版本的软件及注册机（注册机用于激活软件）</li>
+<li>激活时断开网络连接</li>
+</ol>
+<h3 id="设置及界面"><a href="#设置及界面" class="headerlink" title="设置及界面"></a>设置及界面</h3><h4 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h4><ol>
+<li>单位设置：自定义 -&gt; 单位设置是 -&gt; 公制、系统单位设置 分别设置为毫米 <br></li>
+</ol>
+<p><img src="./images/setting_unit.png" alt="image"><br></p>
+<ol>
+<li>栅格与捕捉：<br><br>捕捉开关 -&gt; 左键按住 勾选2.5<br><br>捕捉开关 -&gt; 右键 -&gt; 栅格与捕捉设置 -&gt; 捕捉（勾选 垂足、顶点、端点、中点）<br><br>捕捉开关 -&gt; 右键 -&gt; 栅格与捕捉设置 -&gt; 选项（显示、捕捉到冻结对象、使用轴约束） 也可将角度调至90度<br><br>3、快捷键的设置：自定义 -&gt; 自定义用户界面（设置快捷键）<br><br></li>
+</ol>
+<p><img src="./images/setting_grid.png" alt="image"><br></p>
+<h4 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h4><p>标题栏、菜单栏、工具栏、命令面板、绘图区域、视图控制区、动画控制区</p>
+<h3 id="常用快捷键-（部分）"><a href="#常用快捷键-（部分）" class="headerlink" title="常用快捷键 （部分）"></a>常用快捷键 （部分）</h3><p>视图切换 <br></p>
+<ul>
+<li><code>T</code> ——切换到顶视图<br></li>
+<li><code>B</code> ——切换到底视图<br></li>
+<li><code>F</code> ——切换到前视图<br></li>
+<li><code>P</code> ——切换到透视图<br></li>
+<li><p><code>C</code> ——切换到摄像机视图<br></p>
+</li>
+<li><p><code>Ctrl + A</code> ——选择所有物体</p>
+</li>
+<li><code>Alt + A</code> ——使用对齐（Align）工具</li>
+</ul>
+<ul>
+<li><code>I</code>  ——平移视图到鼠标中心点 <br></li>
+<li><code>N</code>  ——打开自动（动画）关键帧模式 <br></li>
+<li><code>Ctrl + P</code> ——平移当前视图 <br></li>
+<li><code>Shift + Q</code> ——快速渲染 <br></li>
+<li><code>W</code> ——移动模式 <br></li>
+<li><code>Alt + W</code>  ——最大化当前视图（开关）<br></li>
+<li><code>Alt + 鼠标中键</code>  ——旋转<br></li>
+<li><code>G</code> ——删除视图中的栅格<br></li>
+</ul>
+<h2 id="3DMAX如何贴图"><a href="#3DMAX如何贴图" class="headerlink" title="3DMAX如何贴图"></a>3DMAX如何贴图</h2><ol>
+<li>使用快捷键“M”，打开“材质编辑器”，选中材质球</li>
+<li>找到“贴图”，点击“贴图”—勾选“漫反射颜色”—点击“无”—打开“材质/贴图浏览器”—双击“位图”—选中一张你要贴图的图片—点击“打开”</li>
+<li>点击要要上贴图的物体 然后再点击“将材质指定给选定对象”</li>
+</ol>
+<p><img src="./images/map.png" alt="image"><br></p>
+<h2 id="3DMAX模型导入到Unity3D的步骤"><a href="#3DMAX模型导入到Unity3D的步骤" class="headerlink" title="3DMAX模型导入到Unity3D的步骤"></a>3DMAX模型导入到Unity3D的步骤</h2><ol>
+<li>选中模型，点击左上角3DMAX图标菜单 -&gt; 导出 -&gt; 导出选定对象<br><br>注意： 导出格式为.fbx且名称必须为英文字母类</li>
+<li>在Unity中打开，将导出的模型复制到Unity项目所在文件夹中的Assets文件夹下，鼠标拖动模型到场景中，按键F， 物体自动放大<br></li>
+</ol>
+<p><img src="./images/setting_export.png" alt="image"><br></p>
+<h2 id="导出时的设置"><a href="#导出时的设置" class="headerlink" title="导出时的设置"></a>导出时的设置</h2><ol>
+<li>包含 -&gt; 嵌入的媒体（勾选、影响贴图）<br></li>
+<li>高级选项中 -&gt; 比例因子（根据情况选取）<br></li>
+</ol>
+<p><img src="./images/setting_exportset.png" alt="image"><br> </p>
+<p><a href="https://www.autodesk.com/cn/3dsmax/2012help/index.html?url=files/GUID-4B61C2E7-3041-4A8A-852F-D086DE9E66A-2679.htm,topicNumber=d28e513115" target="_blank" rel="noopener">详细的参数设置</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/09/3DMax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Timeline" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><p>Unity版本：Unity2017</p>
+<h4 id="TimeLine简介"><a href="#TimeLine简介" class="headerlink" title="TimeLine简介"></a>TimeLine简介</h4><p>Timeline功能是Unity2017版本中非常重要的一个功能，它的功能也十分强大。它不仅可以高效的实现场景中的动画，还可以制作更为复杂的过场动画及电影内容。<br><br>Timeline 是一套基于时间轴的多轨道动画系统，它支持可视化编辑，实时预览，主要包括Timeline资源，PlayableDirector，组件以及Timeline编辑器。<br></p>
+<h4 id="TimeLine基本轨道类型"><a href="#TimeLine基本轨道类型" class="headerlink" title="TimeLine基本轨道类型"></a>TimeLine基本轨道类型</h4><p>Activation：用于控制物体的激活状态；<br><br>Animation：用于播放AnimationClip或者关键帧动画；<br><br>Audio：用于音效的播放，并不能控制播放的长短，就算把声音条拉小，依旧会全部播放；<br><br>Control：用于控制粒子，或者另一个Timeline对象的播放；<br><br>Playable：用于自定义的播放行为（自定义动画、图片的颜色、材质的某个参数等）；<br><br>Cinemachine：用于控制Cinemachien相机系统的播放，它是一个单独的包，可以在Asset Store中下载，导入这个包以后，就可以在timeline中加入Cinemachine Track。</p>
+<h4 id="创建TimeLine"><a href="#创建TimeLine" class="headerlink" title="创建TimeLine"></a>创建TimeLine</h4><p>Assets -&gt; Create -&gt; Timeline，创建完成后在project视图中会出现一个新的文件：New Timeline</p>
+<h4 id="绑定TimeLine"><a href="#绑定TimeLine" class="headerlink" title="绑定TimeLine"></a>绑定TimeLine</h4><p>将生成的Timeline绑定到GameObject上。在Hierarchy中创建一个Gameobject，然后把生成的Timeline拖拽到GameObject上。</p>
+<h4 id="编辑TimeLine"><a href="#编辑TimeLine" class="headerlink" title="编辑TimeLine"></a>编辑TimeLine</h4><p>Window -&gt; Timeline Editor或者在AssetStore旁边选择Timeline，打开Timeline窗口；</p>
+<h4 id="设置Playable-Director"><a href="#设置Playable-Director" class="headerlink" title="设置Playable Director"></a>设置Playable Director</h4><p>在Timeline绑定的GameObject上，找到组件Playable Director，可以调节参数。<br><br>Playable：要播放的序列；<br><br>Update Method：回放将遵循（DSP，游戏，任何游戏，手动或固定）；<br><br>Play on Awake：是否一开始就播放；<br><br>Wrap Mode：当序列到达终点时会发生什么（循环，None，保持）；<br><br>Initial Time：什么时候开始播放（秒）<br><br>可以用代码动态控制Playable Director组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PlayableDirector director = gameObject.AddComponent&lt;PlayableDirector&gt; ();</span><br><span class="line"></span><br><span class="line">director.initialTime = 0.0;</span><br><span class="line">director.timeUpdateMode = DirectorUpdateMode.GameTime;</span><br><span class="line"></span><br><span class="line">TimelineAsset timeline = (TimelineAsset)Resources.Load (&quot;DisappearTimeline&quot;);</span><br><span class="line"></span><br><span class="line">director.Play (timeline);</span><br><span class="line">director.time = 42.0f;</span><br></pre></td></tr></table></figure>
+<h4 id="Activation-Track"><a href="#Activation-Track" class="headerlink" title="Activation Track"></a>Activation Track</h4><p>Activation的作用主要是控制场景中的物体是否激活，若对象本身带有动画，那么对象隐藏后再出现，动画会重新播放。<br><br>实例：<br><br>使用Timeline使场景中的物体一会出现一会消失。<br></p>
+<ol>
+<li>创建一个Timeline，Assets -&gt; Create -&gt; Timeline；<br></li>
+<li>创建一个空对象用来存放Timeline，这个空对象命名为Director，把创建的Timeline拖拽到Director上，在Director的Timeline窗口，点击add添加一个Activation Track；<br></li>
+<li>在scene中，创建一个对象，拖拽到Activation栏。<br></li>
+<li>在Timeline窗口的右边有一个Active的长条，这个长条表示当前为激活状态，选中长条，可以调节长度，复制多个放在右面，中间留出一定空间，这样就可以实现场景中的物体一会出现一会消失。<br><img src="/Users/jiangtao/Desktop/Activation.png" alt=""></li>
+</ol>
+<h4 id="Playable-Track"><a href="#Playable-Track" class="headerlink" title="Playable Track"></a>Playable Track</h4><p>实例：<br><br>使用Timeline加速或减速游戏里的时间，这样就不需要修改代码也可以改变对象运动速度。<br></p>
+<ol>
+<li>创建一个Timeline，Assets -&gt; Create -&gt; Timeline；<br></li>
+<li>创建一个空对象用来存放Timeline，这个空对象命名为PlayableDirector，把创建的Timeline拖拽到PlayableDirector上，在PlayableDirector的Timeline窗口，点击add添加一个Playable Track用来管理时间代码；<br></li>
+<li>在scene中，创建一个对象，然后挂在上旋转的脚本：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Rotate : MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">	void Update () &#123;</span><br><span class="line">		transform.Rotate (transform.up, 200 * Time.deltaTime);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.子弹时间的脚本BulletTimePlayable.cs，直接把脚本拖拽到Playable Track中，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">using UnityEngine.Playables;</span><br><span class="line">using UnityEngine.Timeline;</span><br><span class="line"></span><br><span class="line">public class BulletTimePlayable : BasicPlayableBehaviour &#123;</span><br><span class="line"></span><br><span class="line">	public float BulletTimeScale;	//大于1为加速，小于1为减速</span><br><span class="line"></span><br><span class="line">	public float originalTimeScale = 1f;</span><br><span class="line"></span><br><span class="line">	public virtual void ProcessFrame (Playable playable, FrameData info, object playerData)&#123;</span><br><span class="line"></span><br><span class="line">		// 检查是否在播放，防止在短条前开始</span><br><span class="line">		if (playable.GetTime () &lt;= 0) return;</span><br><span class="line"></span><br><span class="line">		Time.timeScale = Mathf.Lerp (originalTimeScale, BulletTimeScale, (float)(playable.GetTime () / playable.GetDuration ()));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public virtual void OnBehaviourPlay (Playable playable, FrameData info)&#123;</span><br><span class="line"></span><br><span class="line">		originalTimeScale = Time.timeScale;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/jiangtao/Desktop/Playable.png" alt=""></p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a href="http://blog.csdn.net/ilypl/article/details/78048593" target="_blank" rel="noopener">unity timeline使用手册</a><br><br><a href="http://blog.csdn.net/q568360447/article/details/75171470?locationNum=6&amp;fps=1" target="_blank" rel="noopener">Unity2017 Timeline使用初探</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/09/Timeline/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-UNet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UNet概念"><a href="#UNet概念" class="headerlink" title="UNet概念"></a>UNet概念</h1><p> Unet是一个网络引擎， 为开发者发布全新的多玩家在线工具、技术和服务。<br> 该技术的内部项目名称为 UNET，全称为 Unity Networking。</p>
+<p> 博客：(./<a href="http://blog.csdn.net/u010019717/article/details/46845753" target="_blank" rel="noopener">http://blog.csdn.net/u010019717/article/details/46845753</a>) — 孙广东</p>
+<h2 id="Demo创建："><a href="#Demo创建：" class="headerlink" title="Demo创建："></a>Demo创建：</h2><ol>
+<li><p>创建空物体，NetworkManager，添加NetworkManager和NetworkManagerHUD组件；</p>
+</li>
+<li><p>创建Player玩家预制b并拖入manager；</p>
+<p>Player身上需要添加NetWork Identity,勾选Local Player Authority；添加NetWorkTransfprm；<br>将预制体拖入NetworkManager的Spawn Info的槽中，直接从预置实例化游戏对象。<br>Player Spawn Method:自定义生成位置的选择；<br> Random : 在几个 startPosition 中随机选择<br>√ Round Robin：在几个 startPosition 中循环选择</p>
+</li>
+<li><p>添加NetWorkStartPosition来定位生成位置；</p>
+</li>
+<li><p>运行客户端和服务器。</p>
+<p>两玩家相同移动，则需要添加IsLocal判断；<br>发现位置信息不同步，添加NetWork Transform组件，</p>
+</li>
+</ol>
+<h2 id="组件介绍："><a href="#组件介绍：" class="headerlink" title="组件介绍："></a>组件介绍：</h2><ol>
+<li><p>NetworkManager：网络管理器：提供了简单的方法来  启动和停止  客户端和服务器，以及 管理场景，而且具有虚拟函数，用户代码可以使用实现网络事件的处理程序。（网络管理器可以使用完全不用脚本。允许在inspector配置其所有功能);</p>
+<p>onlineScene：服务器或主机启动时，将加载online在线的场景。连接到该服务器的任何客户端将奉命加载这个场景。<br>offlineScene：网络停止时，加载offline脱机的场景；<br>Spawn：注册相应的prefab；</p>
+</li>
+<li><p>HUD：提供简单、默认的用户界面，用来显示OnGUI界面。</p>
+<p>LAN Host：既是服务器也是客户端；<br>LAN Client：客户端；</p>
+</li>
+<li>NetWork Identity：用来确定netID，netID相同，表明是同一物体；</li>
+<li>NetWork Transform：该组件用来同步transform中的位置角度以及大小信息，以及刚体信息； </li>
+</ol>
+<h2 id="脚本命令解释"><a href="#脚本命令解释" class="headerlink" title="脚本命令解释"></a>脚本命令解释</h2><pre><code>注意：需要引入 using UnityEngine.NetWoring 命名空间；
+     继承 NetWorkBehavior；
+
+[SyncVar]
+//成员变量通过[SyncVar]标签被配置成同步的变量 
+//同步变量可以是基础类型，如整数，字符串和浮点数。
+//也可以是Unity内置数据类型，如Vector3和用户自定义的结构体，
+//但是对结构体类型的同步变量，如果只有几个字段的数值有变化，整个结构体都会被发送。
+//每个NetworkBehaviour脚本可以有最多32个同步变量，包括同步列表
+
+.Spawn
+//Spawn:简单来说，把服务器上的GameObject，根据上面的NetworkIdentity组件找到对应监视连接，在监视连接里生成相应的GameObject.
+</code></pre><h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>   网络系统 具有网络中执行操作actions 的方法。这些类型的actions 有时是调用远程过程调用。在网络系统中有两种类型的 Rpc ：</p>
+<ol>
+<li><p>Commands 命令 -  从客户端调用 和 运行在服务器上。</p>
+<pre><code>给方法名加前缀Cmd_,暗示将[Command]自定义特性添加给该方法； 
+</code></pre></li>
+<li><p>ClientRpc calls - 在服务器上调用 和 客户端上运行。</p>
+<pre><code>添加Rpc前缀；
+</code></pre></li>
+</ol>
+<p>   系统定义在客户端和服务器调用的函数</p>
+<ol>
+<li><p>在Server/Host上调用的：<br>OnServerConnect/OnServerDisconnect/OnServerReady/OnServerAddPlayer/OnServerRemovePlayer/OnServerError；</p>
+</li>
+<li><p>在客户端调用：<br>OnClientConnect/ OnClientDisconnect/OnClientError/OnClientNotReady/OnStartLocalPlayer；</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/09/UNet/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 

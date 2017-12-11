@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Unity热更新——toLua的使用Agenda 热更新原理和热更新方案介绍 Lua环境安装 Lua语法 C#与lua语法区别 工具 C#和Lua之间的调用 LuaFramwork热更新原理和热更新方案介绍http://blog.csdn.net/guofeng526/article/details/52662994Lua环境安装 Linux系统上安装Linux&amp;amp;Mac上安装。只需要下载源">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/ToLua/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="Unity热更新——toLua的使用Agenda 热更新原理和热更新方案介绍 Lua环境安装 Lua语法 C#与lua语法区别 工具 C#和Lua之间的调用 LuaFramwork热更新原理和热更新方案介绍http://blog.csdn.net/guofeng526/article/details/52662994Lua环境安装 Linux系统上安装Linux&amp;amp;Mac上安装。只需要下载源">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/07/03/5959af3a72d72.png">
+<meta property="og:updated_time" content="2017-10-08T09:03:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="Unity热更新——toLua的使用Agenda 热更新原理和热更新方案介绍 Lua环境安装 Lua语法 C#与lua语法区别 工具 C#和Lua之间的调用 LuaFramwork热更新原理和热更新方案介绍http://blog.csdn.net/guofeng526/article/details/52662994Lua环境安装 Linux系统上安装Linux&amp;amp;Mac上安装。只需要下载源">
+<meta name="twitter:image" content="https://ooo.0o0.ooo/2017/07/03/5959af3a72d72.png">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +156,254 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ToLua" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Unity热更新——toLua的使用"><a href="#Unity热更新——toLua的使用" class="headerlink" title="Unity热更新——toLua的使用"></a>Unity热更新——toLua的使用</h1><h2 id="Agenda"><a href="#Agenda" class="headerlink" title="Agenda"></a>Agenda</h2><ul>
+<li>热更新原理和热更新方案介绍</li>
+<li>Lua环境安装</li>
+<li>Lua语法</li>
+<li>C#与lua语法区别</li>
+<li>工具</li>
+<li>C#和Lua之间的调用</li>
+<li>LuaFramwork<h2 id="热更新原理和热更新方案介绍"><a href="#热更新原理和热更新方案介绍" class="headerlink" title="热更新原理和热更新方案介绍"></a>热更新原理和热更新方案介绍</h2><a href="http://blog.csdn.net/guofeng526/article/details/52662994" target="_blank" rel="noopener">http://blog.csdn.net/guofeng526/article/details/52662994</a><h2 id="Lua环境安装"><a href="#Lua环境安装" class="headerlink" title="Lua环境安装"></a>Lua环境安装</h2></li>
+<li>Linux系统上安装<br>Linux&amp;Mac上安装。只需要下载源码包并在终端上解压编译即可（以5.3.0版本为例）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -R -O http://www.lua.org/ftp/lua-5.3.0.tar.gz</span><br><span class="line">tar zxf lua-5.3.0.tar.gz</span><br><span class="line">cd lua-5.3.0</span><br><span class="line">make linux test</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Mac OS X系统上安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -R -O http://www.lua.org/ftp/lua-5.3.0.tar.gz</span><br><span class="line">tar zxf lua-5.3.0.tar.gz</span><br><span class="line">cd lua-5.3.0</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Windows系统上安装Lua</p>
+</li>
+</ul>
+<p>windows下可以使用一个叫”SciTE”的IDE环境来执行lua程序，下载地址为：</p>
+<p>Github 下载地址：<a href="https://github.com/rjpcomputing/luaforwindows/releases" target="_blank" rel="noopener">https://github.com/rjpcomputing/luaforwindows/releases</a><br>双击安装即可。</p>
+<p>Lua官方推荐的方法使用LuaDist:<a href="http://luadist.org" target="_blank" rel="noopener">http://luadist.org</a></p>
+<h2 id="Lua语法"><a href="#Lua语法" class="headerlink" title="Lua语法"></a>Lua语法</h2><p><a href="http://www.runoob.com/lua/lua-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/lua/lua-tutorial.html</a></p>
+<h2 id="C-与Lua语法的区别"><a href="#C-与Lua语法的区别" class="headerlink" title="C#与Lua语法的区别"></a>C#与Lua语法的区别</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">Site</th>
+<th style="text-align:left">Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">声明变量</td>
+<td style="text-align:left">直接声明，不需要public int之类的</td>
+</tr>
+<tr>
+<td style="text-align:left">｛｝</td>
+<td style="text-align:left">do end </td>
+</tr>
+<tr>
+<td style="text-align:left">nil</td>
+<td style="text-align:left">表示无效值(在条件表达式中相当于false)</td>
+</tr>
+<tr>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">fasle和true</td>
+</tr>
+<tr>
+<td style="text-align:left">number</td>
+<td style="text-align:left">表示双精度的实浮点数</td>
+</tr>
+<tr>
+<td style="text-align:left">string</td>
+<td style="text-align:left">字符串由一对双引号或单引号来表示</td>
+</tr>
+<tr>
+<td style="text-align:left">function</td>
+<td style="text-align:left">由C或Lua编写的函数</td>
+</tr>
+<tr>
+<td style="text-align:left">userdata</td>
+<td style="text-align:left">表示任意储存在变量中的C数据结构</td>
+</tr>
+<tr>
+<td style="text-align:left">thread</td>
+<td style="text-align:left">表示执行的独立线路，用于执行协同程序</td>
+</tr>
+<tr>
+<td style="text-align:left">注释</td>
+<td style="text-align:left">单行注释用：–多行注释用：–[[  –]]</td>
+</tr>
+</tbody>
+</table>
+<p>后续我会补全</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><code>sublime</code></p>
+<p><code>Nodepad++</code></p>
+<p><code>Vs code</code></p>
+<p><code>...</code></p>
+<h2 id="C-和Lua之间的调用"><a href="#C-和Lua之间的调用" class="headerlink" title="C#和Lua之间的调用"></a>C#和Lua之间的调用</h2><h3 id="C-调用lua-LuaState-变量名-函数名"><a href="#C-调用lua-LuaState-变量名-函数名" class="headerlink" title="C#调用lua:LuaState[变量名/函数名]"></a><code>C#调用lua</code>:LuaState[变量名/函数名]</h3><p>1.LuaState</p>
+<ul>
+<li><p>执行lua代码段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DoString(String)</span><br><span class="line">DoFile(.lua文件名)</span><br><span class="line">Require（.lua文件名（但没有.lua后缀））</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取lua函数或者表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LuaFunction func = lua.GetFunction(函数名); 或者  LuaFunction func = lua[函数名] as LuaFunction;</span><br><span class="line">LuaTable table = lua.GetTable(表名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start():如果需要使用wrap,则需要调用该方法</p>
+</li>
+</ul>
+<p>2.LuaFunction<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Call();</span><br></pre></td></tr></table></figure></p>
+<p>3.LuaTable<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LuaTable[变量名/函数名]</span><br><span class="line">ToArray()</span><br></pre></td></tr></table></figure></p>
+<h3 id="lua调用c"><a href="#lua调用c" class="headerlink" title="lua调用c#"></a><code>lua调用c#</code></h3><p>在C#中将引用传递到lua中</p>
+<p>1.通过”.”来使用非静态的变量以及静态的变量与方法</p>
+<p>2.通过”:”来使用非静态的方法</p>
+<p>3.通过”{}”来传递数组给c#</p>
+<p>4.创建GameObject：newObject(变量)</p>
+<p>5.摧毁GameObject：destroy(变量) </p>
+<p>6.获取组件：GetComponent(‘LuaBehaviour’)</p>
+<h2 id="LuaFramework"><a href="#LuaFramework" class="headerlink" title="LuaFramework"></a>LuaFramework</h2><p>我们只需要在tolua里面写属于自己模块部分的逻辑就能简单的实现热更新。</p>
+<p>eg.<br><img src="https://ooo.0o0.ooo/2017/07/03/5959af3a72d72.png" alt=""></p>
+<p><a href="http://www.ulua.org/" target="_blank" rel="noopener">Lua官方地址</a></p>
+<ul>
+<li>从<a href="https://github.com/topameng/tolua" target="_blank" rel="noopener">https://github.com/topameng/tolua</a>上把代码下载下来，可以clone也可以直接下载zip并解压</li>
+<li>把Assets下的文件复制到项目里的Assets目录下</li>
+<li>把Unity5.x下的文件也复制过去，覆盖掉Plugins目录（OSX系统需要注意是合并而不是替换）</li>
+<li>Assets\ToLua\Examples这里面一共是tolua作者给的24个例子<br>（关于例子的介绍和解释在这里：<a href="http://doc.ulua.org/article/ulua/toluadeexamples01helloworld.html" target="_blank" rel="noopener">http://doc.ulua.org/article/ulua/toluadeexamples01helloworld.html</a>)</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/10/08/ToLua/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/10/08/ReactiveX/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/08/Chrome/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +427,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

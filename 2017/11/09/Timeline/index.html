@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="要求Unity版本：Unity2017 TimeLine简介Timeline功能是Unity2017版本中非常重要的一个功能，它的功能也十分强大。它不仅可以高效的实现场景中的动画，还可以制作更为复杂的过场动画及电影内容。Timeline 是一套基于时间轴的多轨道动画系统，它支持可视化编辑，实时预览，主要包括Timeline资源，PlayableDirector，组件以及Timeline编辑器。 T">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/11/09/Timeline/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="要求Unity版本：Unity2017 TimeLine简介Timeline功能是Unity2017版本中非常重要的一个功能，它的功能也十分强大。它不仅可以高效的实现场景中的动画，还可以制作更为复杂的过场动画及电影内容。Timeline 是一套基于时间轴的多轨道动画系统，它支持可视化编辑，实时预览，主要包括Timeline资源，PlayableDirector，组件以及Timeline编辑器。 T">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/Users/jiangtao/Desktop/Activation.png">
+<meta property="og:image" content="http://yoursite.com/Users/jiangtao/Desktop/Playable.png">
+<meta property="og:updated_time" content="2017-11-09T03:54:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="要求Unity版本：Unity2017 TimeLine简介Timeline功能是Unity2017版本中非常重要的一个功能，它的功能也十分强大。它不仅可以高效的实现场景中的动画，还可以制作更为复杂的过场动画及电影内容。Timeline 是一套基于时间轴的多轨道动画系统，它支持可视化编辑，实时预览，主要包括Timeline资源，PlayableDirector，组件以及Timeline编辑器。 T">
+<meta name="twitter:image" content="http://yoursite.com/Users/jiangtao/Desktop/Activation.png">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +157,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Timeline" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><p>Unity版本：Unity2017</p>
+<h4 id="TimeLine简介"><a href="#TimeLine简介" class="headerlink" title="TimeLine简介"></a>TimeLine简介</h4><p>Timeline功能是Unity2017版本中非常重要的一个功能，它的功能也十分强大。它不仅可以高效的实现场景中的动画，还可以制作更为复杂的过场动画及电影内容。<br><br>Timeline 是一套基于时间轴的多轨道动画系统，它支持可视化编辑，实时预览，主要包括Timeline资源，PlayableDirector，组件以及Timeline编辑器。<br></p>
+<h4 id="TimeLine基本轨道类型"><a href="#TimeLine基本轨道类型" class="headerlink" title="TimeLine基本轨道类型"></a>TimeLine基本轨道类型</h4><p>Activation：用于控制物体的激活状态；<br><br>Animation：用于播放AnimationClip或者关键帧动画；<br><br>Audio：用于音效的播放，并不能控制播放的长短，就算把声音条拉小，依旧会全部播放；<br><br>Control：用于控制粒子，或者另一个Timeline对象的播放；<br><br>Playable：用于自定义的播放行为（自定义动画、图片的颜色、材质的某个参数等）；<br><br>Cinemachine：用于控制Cinemachien相机系统的播放，它是一个单独的包，可以在Asset Store中下载，导入这个包以后，就可以在timeline中加入Cinemachine Track。</p>
+<h4 id="创建TimeLine"><a href="#创建TimeLine" class="headerlink" title="创建TimeLine"></a>创建TimeLine</h4><p>Assets -&gt; Create -&gt; Timeline，创建完成后在project视图中会出现一个新的文件：New Timeline</p>
+<h4 id="绑定TimeLine"><a href="#绑定TimeLine" class="headerlink" title="绑定TimeLine"></a>绑定TimeLine</h4><p>将生成的Timeline绑定到GameObject上。在Hierarchy中创建一个Gameobject，然后把生成的Timeline拖拽到GameObject上。</p>
+<h4 id="编辑TimeLine"><a href="#编辑TimeLine" class="headerlink" title="编辑TimeLine"></a>编辑TimeLine</h4><p>Window -&gt; Timeline Editor或者在AssetStore旁边选择Timeline，打开Timeline窗口；</p>
+<h4 id="设置Playable-Director"><a href="#设置Playable-Director" class="headerlink" title="设置Playable Director"></a>设置Playable Director</h4><p>在Timeline绑定的GameObject上，找到组件Playable Director，可以调节参数。<br><br>Playable：要播放的序列；<br><br>Update Method：回放将遵循（DSP，游戏，任何游戏，手动或固定）；<br><br>Play on Awake：是否一开始就播放；<br><br>Wrap Mode：当序列到达终点时会发生什么（循环，None，保持）；<br><br>Initial Time：什么时候开始播放（秒）<br><br>可以用代码动态控制Playable Director组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PlayableDirector director = gameObject.AddComponent&lt;PlayableDirector&gt; ();</span><br><span class="line"></span><br><span class="line">director.initialTime = 0.0;</span><br><span class="line">director.timeUpdateMode = DirectorUpdateMode.GameTime;</span><br><span class="line"></span><br><span class="line">TimelineAsset timeline = (TimelineAsset)Resources.Load (&quot;DisappearTimeline&quot;);</span><br><span class="line"></span><br><span class="line">director.Play (timeline);</span><br><span class="line">director.time = 42.0f;</span><br></pre></td></tr></table></figure>
+<h4 id="Activation-Track"><a href="#Activation-Track" class="headerlink" title="Activation Track"></a>Activation Track</h4><p>Activation的作用主要是控制场景中的物体是否激活，若对象本身带有动画，那么对象隐藏后再出现，动画会重新播放。<br><br>实例：<br><br>使用Timeline使场景中的物体一会出现一会消失。<br></p>
+<ol>
+<li>创建一个Timeline，Assets -&gt; Create -&gt; Timeline；<br></li>
+<li>创建一个空对象用来存放Timeline，这个空对象命名为Director，把创建的Timeline拖拽到Director上，在Director的Timeline窗口，点击add添加一个Activation Track；<br></li>
+<li>在scene中，创建一个对象，拖拽到Activation栏。<br></li>
+<li>在Timeline窗口的右边有一个Active的长条，这个长条表示当前为激活状态，选中长条，可以调节长度，复制多个放在右面，中间留出一定空间，这样就可以实现场景中的物体一会出现一会消失。<br><img src="/Users/jiangtao/Desktop/Activation.png" alt=""></li>
+</ol>
+<h4 id="Playable-Track"><a href="#Playable-Track" class="headerlink" title="Playable Track"></a>Playable Track</h4><p>实例：<br><br>使用Timeline加速或减速游戏里的时间，这样就不需要修改代码也可以改变对象运动速度。<br></p>
+<ol>
+<li>创建一个Timeline，Assets -&gt; Create -&gt; Timeline；<br></li>
+<li>创建一个空对象用来存放Timeline，这个空对象命名为PlayableDirector，把创建的Timeline拖拽到PlayableDirector上，在PlayableDirector的Timeline窗口，点击add添加一个Playable Track用来管理时间代码；<br></li>
+<li>在scene中，创建一个对象，然后挂在上旋转的脚本：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Rotate : MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">	void Update () &#123;</span><br><span class="line">		transform.Rotate (transform.up, 200 * Time.deltaTime);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.子弹时间的脚本BulletTimePlayable.cs，直接把脚本拖拽到Playable Track中，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">using UnityEngine.Playables;</span><br><span class="line">using UnityEngine.Timeline;</span><br><span class="line"></span><br><span class="line">public class BulletTimePlayable : BasicPlayableBehaviour &#123;</span><br><span class="line"></span><br><span class="line">	public float BulletTimeScale;	//大于1为加速，小于1为减速</span><br><span class="line"></span><br><span class="line">	public float originalTimeScale = 1f;</span><br><span class="line"></span><br><span class="line">	public virtual void ProcessFrame (Playable playable, FrameData info, object playerData)&#123;</span><br><span class="line"></span><br><span class="line">		// 检查是否在播放，防止在短条前开始</span><br><span class="line">		if (playable.GetTime () &lt;= 0) return;</span><br><span class="line"></span><br><span class="line">		Time.timeScale = Mathf.Lerp (originalTimeScale, BulletTimeScale, (float)(playable.GetTime () / playable.GetDuration ()));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public virtual void OnBehaviourPlay (Playable playable, FrameData info)&#123;</span><br><span class="line"></span><br><span class="line">		originalTimeScale = Time.timeScale;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/jiangtao/Desktop/Playable.png" alt=""></p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a href="http://blog.csdn.net/ilypl/article/details/78048593" target="_blank" rel="noopener">unity timeline使用手册</a><br><br><a href="http://blog.csdn.net/q568360447/article/details/75171470?locationNum=6&amp;fps=1" target="_blank" rel="noopener">Unity2017 Timeline使用初探</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/09/Timeline/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/11/09/3DMax/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/09/UNet/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

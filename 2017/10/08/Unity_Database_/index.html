@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="一、SQLiteManagerSQLiteManager是一个支持多国语言基于Web的SQLite数据库管理工具。它的特点包括多数据库管理，创建和连接；表格，数据，索引操作；视图，触发器，和自定义函数管理。数据导入/导出；数据库结构导出。  安装 SQLiteManager     在SVN的目录下 _EXAMPLE\md\170614Unity Database\Tools\ SQLiteMan">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/Unity_Database_/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="一、SQLiteManagerSQLiteManager是一个支持多国语言基于Web的SQLite数据库管理工具。它的特点包括多数据库管理，创建和连接；表格，数据，索引操作；视图，触发器，和自定义函数管理。数据导入/导出；数据库结构导出。  安装 SQLiteManager     在SVN的目录下 _EXAMPLE\md\170614Unity Database\Tools\ SQLiteMan">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3139616-0c3f4028e52c32a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-08T09:03:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="一、SQLiteManagerSQLiteManager是一个支持多国语言基于Web的SQLite数据库管理工具。它的特点包括多数据库管理，创建和连接；表格，数据，索引操作；视图，触发器，和自定义函数管理。数据导入/导出；数据库结构导出。  安装 SQLiteManager     在SVN的目录下 _EXAMPLE\md\170614Unity Database\Tools\ SQLiteMan">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3139616-0c3f4028e52c32a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +156,283 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Unity_Database_" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、SQLiteManager"><a href="#一、SQLiteManager" class="headerlink" title="一、SQLiteManager"></a>一、SQLiteManager</h2><p>SQLiteManager是一个支持多国语言基于Web的SQLite数据库管理工具。它的特点包括多数据库管理，创建和连接；表格，数据，索引操作；视图，触发器，和自定义函数管理。数据导入/导出；数据库结构导出。</p>
+<blockquote>
+<p>安装 <a href="https://sqlitemanager.en.softonic.com/" target="_blank" rel="noopener">SQLiteManager</a> </p>
+</blockquote>
+<p>  在SVN的目录下 _EXAMPLE\md\170614<em>Unity</em> Database\Tools\</p>
+<h3 id="SQLiteManager的使用："><a href="#SQLiteManager的使用：" class="headerlink" title="SQLiteManager的使用："></a>SQLiteManager的使用：</h3><p>打开SQLiteManager，新建一个数据库，文件格式为*.sqlite,最终要放在Unity编辑器的StreamingAssets目录.</p>
+<p>ps: <a href="http://www.jianshu.com/p/1d3216b42d0b" target="_blank" rel="noopener">Unity特殊文件夹的说明</a></p>
+<h3 id="数据库文件在各平台的路径"><a href="#数据库文件在各平台的路径" class="headerlink" title="数据库文件在各平台的路径"></a>数据库文件在各平台的路径</h3><p><strong>TIP:</strong> 安卓平台把打出的包.apk 改为.zip格式，解压出来，会在 asset/下找到 数据库文件<br><img src="http://upload-images.jianshu.io/upload_images/3139616-0c3f4028e52c32a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="OD5WRTDZ_2)PNNRF58S_Y0E.png"></p>
+<h2 id="二、SQL语法："><a href="#二、SQL语法：" class="headerlink" title="二、SQL语法："></a>二、SQL语法：</h2><p><a href="http://www.jianshu.com/p/18c7db2c1d71" target="_blank" rel="noopener">深入研究参考网址</a></p>
+<h3 id="基础语句"><a href="#基础语句" class="headerlink" title="基础语句"></a>基础语句</h3><p>主要用到的是第11个，有些在SQLiteManager里就可以提前操作</p>
+<ol>
+<li><p>创建数据库(create)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">database</span>-<span class="keyword">name</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">not</span> exist students (<span class="keyword">ID</span> <span class="built_in">integer</span>, <span class="keyword">name</span> <span class="built_in">text</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据库(drop)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> dbname</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> teachers;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备份sql server (backup)</p>
+<ul>
+<li><p>创建 备份数据的 device</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> <span class="keyword">master</span></span><br><span class="line">EXEC sp_addumpdevice ‘disk’, ‘testBack’, ‘c:\mssql7backup\MyNwind_1.dat’</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始 备份</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BACKUP</span> <span class="keyword">DATABASE</span> pubs <span class="keyword">TO</span> testBack</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>创建表(create)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tabname(col1 type1 [<span class="keyword">not</span> <span class="literal">null</span>] [primary <span class="keyword">key</span>],col2 type2 [<span class="keyword">not</span> <span class="literal">null</span>],..)</span><br></pre></td></tr></table></figure>
+<p>根据已有的表创建新表：</p>
+<ul>
+<li><p>A：(使用旧表创建新表)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tab_new <span class="keyword">like</span> tab_old</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>B：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tab_new <span class="keyword">as</span> <span class="keyword">select</span> col1,col2… <span class="keyword">from</span> tab_old definition <span class="keyword">only</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>删除表(drop)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> tabname</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加一个列(alter…column)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> tabname <span class="keyword">add</span> <span class="keyword">column</span> <span class="keyword">col</span> <span class="keyword">type</span></span><br></pre></td></tr></table></figure>
+<p><strong>注：</strong> 列增加后将不能删除。DB2中列加上后数据类型也不能改变，唯一能改变的是增加varchar类型的长度。</p>
+</li>
+<li><p>添加主键(alter)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> tabname <span class="keyword">add</span> primary <span class="keyword">key</span>(<span class="keyword">col</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除主键(alter)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> tabname <span class="keyword">drop</span> primary <span class="keyword">key</span>(<span class="keyword">col</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>索引</p>
+<ul>
+<li><p>创建索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> [<span class="keyword">unique</span>] <span class="keyword">index</span> idxname <span class="keyword">on</span> tabnam (<span class="keyword">col</span>….)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> idxname</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注：</strong> 索引是不可更改的，想更改必须删除重新建。</p>
+</li>
+<li><p>视图</p>
+<ul>
+<li><p>创建视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> viewname <span class="keyword">as</span> <span class="keyword">select</span> <span class="keyword">statement</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> viewname</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>几个简单的基本的sql语句</p>
+</li>
+</ol>
+<ul>
+<li><p>选择：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table1 <span class="keyword">where</span> 范围</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table1(field1,field2) <span class="keyword">values</span> (value1,value2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table1 <span class="keyword">where</span> 范围</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table1 <span class="keyword">set</span> field1=value1 <span class="keyword">where</span> 范围</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table1 <span class="keyword">where</span> field1 <span class="keyword">like</span>’%value1%’ —<span class="keyword">like</span>的语法很精妙，查资料!</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> @ <span class="keyword">from</span> table1 <span class="keyword">order</span> <span class="keyword">by</span> field1,field2 [<span class="keyword">desc</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总数：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span> <span class="keyword">as</span> totalcount <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求和：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(field1) <span class="keyword">as</span> sumvalue <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>平均：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(field1) <span class="keyword">as</span> avgvalue <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最大：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(field1) <span class="keyword">as</span> maxvalue <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最小：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(field1) <span class="keyword">as</span> <span class="keyword">minvalue</span> <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="三、Unity编辑器里的准备"><a href="#三、Unity编辑器里的准备" class="headerlink" title="三、Unity编辑器里的准备"></a>三、Unity编辑器里的准备</h2><p>(在demo工程里都有)</p>
+<p>Unity编辑器Plugins下需要的库： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mono.Data.Sqlite.dll  </span><br><span class="line">sqlite3.dll   </span><br><span class="line">System.Data.dll</span><br></pre></td></tr></table></figure>
+<p>Android平台需要 <code>Plugins/Android/libsqlite3.so
+StreamingAssets/</code></p>
+<p>在SQLiteManager 里创建的数据库名称.sqlite</p>
+<h2 id="四、封装数据库连接的工具DataBaseTool"><a href="#四、封装数据库连接的工具DataBaseTool" class="headerlink" title="四、封装数据库连接的工具DataBaseTool"></a>四、封装数据库连接的工具DataBaseTool</h2><p>例子里的DataBaseTool脚本</p>
+<ol>
+<li>创建数据库连接。     </li>
+<li>打开数据库连接    </li>
+<li>创建Command对象并设置sql语句 </li>
+<li>调用ExecuteNonQuery ExecuteReader方法,执行sql语句并获得结果</li>
+<li>关闭连接。</li>
+</ol>
+<h2 id="五、使用上述工具类进行数据操作"><a href="#五、使用上述工具类进行数据操作" class="headerlink" title="五、使用上述工具类进行数据操作"></a>五、使用上述工具类进行数据操作</h2><p>参见例子demo里的 DataTest脚本</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> LitJson;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataTest</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  List&lt;Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">object</span>&gt;&gt; result;</span><br><span class="line">  <span class="keyword">string</span> database_Name;</span><br><span class="line">  <span class="keyword">string</span> sql;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="comment">//StreamingAssets目录下的数据库文件</span></span><br><span class="line">    database_Name = <span class="string">"mydatabase.sqlite"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//这个地方可以连着写sql语句,用分号隔开，这样数据库连接就只用走一次</span></span><br><span class="line">    sql = <span class="string">"insert into Player values('qaq','1001','24');delete from Player where Name='wangwu' ;select * from Player "</span>;</span><br><span class="line">    result = DataBaseTool.GetInstance(database_Name).ExcuteAllRresult(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><h3 id="DataBaseTool进行了简化"><a href="#DataBaseTool进行了简化" class="headerlink" title="DataBaseTool进行了简化"></a>DataBaseTool进行了简化</h3><p>核心 <code>public List&lt;Dictionary&lt;string, object&gt;&gt; ExcuteAllRresult(string sql){}</code></p>
+<p>构造方法 <code>private DataBaseTool(string databaseName){}</code></p>
+<p>Android 平台得注意数据库的路径 <code>public string AndriodPaltformSet(string databaseName){}</code></p>
+<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><ol>
+<li>数据库不要实时更新，多用于存档</li>
+<li>设计表的时候空值的问题，查找的结果不会报错，在SQLiteManager里看到为NULL</li>
+<li>其他关于中途数据库断开连接的问题，可以自行尝试，这些异常都会在 SqliteException 类里抛出 参考Try…Catch…的使用</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/10/08/Unity_Database_/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/10/08/Chrome/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/08/gitStep2_branch/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +456,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

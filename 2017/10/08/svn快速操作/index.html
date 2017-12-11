@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="#一、TortoiseSVN.exe 命令行和GUI形式结合 ###命令行格式这个命令可以在cmd下直接执行，任何目录下都可以（往下看有例子）1TortoiseProc.exe /command:命令名/path:路径参数 /额外参数 命令名：必须是规定的命令名路径参数：/path:”some\path” ,多个路径用*分割进度完成后的操作可以传递 /closeonend  额外参数0:不自动关闭">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/svn快速操作/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="#一、TortoiseSVN.exe 命令行和GUI形式结合 ###命令行格式这个命令可以在cmd下直接执行，任何目录下都可以（往下看有例子）1TortoiseProc.exe /command:命令名/path:路径参数 /额外参数 命令名：必须是规定的命令名路径参数：/path:”some\path” ,多个路径用*分割进度完成后的操作可以传递 /closeonend  额外参数0:不自动关闭">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3139616-8b08202e5c641532.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-08T09:03:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="#一、TortoiseSVN.exe 命令行和GUI形式结合 ###命令行格式这个命令可以在cmd下直接执行，任何目录下都可以（往下看有例子）1TortoiseProc.exe /command:命令名/path:路径参数 /额外参数 命令名：必须是规定的命令名路径参数：/path:”some\path” ,多个路径用*分割进度完成后的操作可以传递 /closeonend  额外参数0:不自动关闭">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3139616-8b08202e5c641532.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +156,171 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-svn快速操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#一、TortoiseSVN.exe 命令行和GUI形式结合</p>
+<p>###命令行格式<br>这个命令可以在cmd下直接执行，任何目录下都可以（往下看有例子）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TortoiseProc.exe /command:命令名/path:路径参数 /额外参数</span><br></pre></td></tr></table></figure></p>
+<p>命令名：必须是规定的命令名<br>路径参数：/path:”some\path” ,多个路径用*分割<br>进度完成后的操作可以传递 /closeonend  额外参数<br>0:不自动关闭对话框<br>1:如果没发生错误则自动关闭对话框<br>2:如果没发生错误和冲突则自动关闭对话框<br>3:如果没有错误、冲突和合并，会自动关闭<br>4:如果没有错误、冲突和合并，会自动关闭</p>
+<p>###常用command命令<br>log   日志<br>update 更新<br>commit 提交<br>revert 恢复</p>
+<p>###例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对一个目录下的文件更新，如果没有错误、冲突和合并，会自动关闭</span><br><span class="line">TortoiseProc.exe /command:update /path:&quot;d:/svn/&quot;/closeonend:3</span><br><span class="line">对多个个目录下的文件更新，如果没有错误、冲突和合并，会自动关闭</span><br><span class="line">TortoiseProc.exe/command:update/path:&quot;d:/svn/svn1/*d:/svn/svn2/&quot;/closeonend:3</span><br></pre></td></tr></table></figure></p>
+<p>###自定义.bat文件<br>1.新建一个文本文档，把svn命令写进去<br>2.保存改文本格式为.bat<br>3.双击运行即可看到效果<br>ps：可以自己分别新建4个.bat文本，与常用命令对应(update,commmit,revert,log),然后每次要进行svn的操作就运行.bat就好了</p>
+<p>#二.SVN纯命令行形式（这种方式很原始，推荐使用一）<br>需要在安装TortoiseSVN.exe时勾选command line client tools，这样会在系统环境变量里加入这个C:\Program Files\TortoiseSVN\bin，这样  “svn” 才是一个可用的命令<br>PS：这些命令不加path参数的，在想要操作的目录下  shift+右键–在此处打开cmd窗口（装了别的cmd工具就是对应的，最后目的就是要进入命令行），以下各个命令有特殊说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令行里</span><br><span class="line">svn update -r m path  //m版本号</span><br><span class="line">svn revert path</span><br><span class="line">svn commit -m &quot;LogMessage&quot; test.php</span><br><span class="line">svn log path</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3139616-8b08202e5c641532.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="svncommandline.png"><br>1、svn checkout path（path是服务器上的目录）将文件checkout到本地目录<br>例如：svn checkout svn://192.168.1.1/pro/domain    简写：svn co </p>
+<p>2、svn add file  往版本库中添加新的文件<br> 例如：svn add test.php(添加test.php)   svn add *.<a href="http://lib.csdn.net/base/php" target="_blank" rel="noopener">PHP</a>(添加当前目录下所有的<a href="http://lib.csdn.net/base/php" target="_blank" rel="noopener">php</a>文件) </p>
+<p>######3、将改动的文件提交到版本库    svn commit -m “LogMessage” [-N] [–no-unlock] PATH(如果选择了保持锁，就使用–no-unlock开关)    例如：svn commit -m “add test file for my test” test.php    简写：svn ci </p>
+<p>######4、更新到某个版本    svn update -r m path    例如：    svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。    svn update -r 200 test.php(将版本库中的文件test.php还原到版本200)    svn update test.php(更新，于版本库同步。如果在提交的时候提示过期的话，是因为冲突，需要先update，修改文件，然后清除svn resolved，最后再提交commit)   简写：svn up </p>
+<p> ######5、查看日志    svn log path   例如：svn log test.php 显示这个文件的所有修改记录，及其版本号的变化 </p>
+<p>######6、恢复本地修改     svn revert: 恢复原始未改变的工作副本文件 (恢复大部份的本地修改)。revert:    用法: revert PATH…    注意: 本子命令不会存取网络，并且会解除冲突的状况。但是它不会恢复         被删除的目录   </p>
+<p>7、加锁/解锁    svn lock -m “LockMessage” [–force] PATH   例如：svn lock -m “lock test file” test.php   svn unlock PATH </p>
+<p>8、查看文件或者目录状态    1）svn status path（目录下的文件和子目录的状态，正常状态不显示）    【?：不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】   2）svn status -v path(显示文件和子目录状态)    第一列保持相同，第二列显示工作版本号，第三和第四列显示最后一次修改的版本号和修改人。    注：svn status、svn diff和 svn revert这三条命令在没有网络的情况下也可以执行的，原因是svn在本地的.svn中保留了本地版本的原始拷贝。   简写：svn st  </p>
+<p>9、删除文件    svn delete path -m “delete test fle”   例如：svn delete svn://192.168.1.1/pro/domain/test.php -m “delete test file”   或者直接svn delete test.php 然后再svn ci -m ‘delete test file‘，推荐使用这种   简写：svn (del, remove, rm)<br>10、查看文件详细信息    svn info path   例如：svn info test.php</p>
+<p> 11、比较差异    svn diff path(将修改的文件与基础版本比较)   例如：svn diff test.php        svn diff -r m:n path(对版本m和版本n比较差异)   例如：svn diff -r 200:201 test.php   简写：svn di </p>
+<p>12、将两个版本之间的差异合并到当前文件    svn merge -r m:n path   例如：svn merge -r 200:205 test.php（将版本200与205之间的差异合并到当前文件，但是一般都会产生冲突，需要处理一下）<br>13、SVN 帮助    svn help   svn help ci</p>
+<p>14、版本库下的文件和目录列表    svn list path   显示path目录下的所有属于版本库的文件和目录   简写：svn ls  </p>
+<p>15、创建纳入版本控制下的新目录    svn mkdir: 创建纳入版本控制下的新目录。   用法: 1、mkdir PATH…        2、mkdir URL…  </p>
+<p>16、代码库URL变更      svn switch (sw): 更新工作副本至不同的URL。     用法: 1、switch URL [PATH]           2、switch –relocate FROM TO [PATH…]            1、更新你的工作副本，映射到一个新的URL，其行为跟“svn update”很像，也会将              服务器上文件与本地文件合并。这是将工作副本对应到同一仓库中某个分支或者标记的              方法。           2、改写工作副本的URL元数据，以反映单纯的URL上的改变。当仓库的根URL变动              (比如方案名或是主机名称变动)，但是工作副本仍旧对映到同一仓库的同一目录时使用              这个命令更新工作副本与仓库的对应关系。   </p>
+<p>17、解决冲突     svn resolved: 移除工作副本的目录或文件的“冲突”状态。    用法: resolved PATH…    注意: 本子命令不会依语法来解决冲突或是移除冲突标记；它只是移除冲突的    相关文件，然后让 PATH 可以再次提交。  </p>
+<p> 18、输出指定文件或URL的内容。    svn cat 目标[@版本]…如果指定了版本，将从指定的版本开始查找。   svn cat -r PREV filename &gt; filename (PREV 是上一版本,也可以写具体版本号,这样输出结果是可以提交的)</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/10/08/svn快速操作/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/10/08/markdown/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/08/Socket/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +344,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

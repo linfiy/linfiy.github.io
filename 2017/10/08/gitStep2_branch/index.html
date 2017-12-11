@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | linfyShare</title>
+  <title>linfyShare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Git - Step 2 什么时候是使用分支的好时机？ 一个分支通常代表一个单独的客户发布版，如果你想开始项目的1.1版本。但你知道一些客户想要保持1.0版本，那就把旧版本留作一个单独的分支  一个分支可以封装一个开发阶段，比如原型、测试、稳定或邻近发布。你也可以认为1.1版本发布是一个单独的阶段，也就是维护版本。  一个分支可以隔离一个特性的开发或者研究特别复杂的bug。例如，可以引入一个分支来">
+<meta property="og:type" content="article">
 <meta property="og:title" content="linfyShare">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/gitStep2_branch/index.html">
 <meta property="og:site_name" content="linfyShare">
+<meta property="og:description" content="Git - Step 2 什么时候是使用分支的好时机？ 一个分支通常代表一个单独的客户发布版，如果你想开始项目的1.1版本。但你知道一些客户想要保持1.0版本，那就把旧版本留作一个单独的分支  一个分支可以封装一个开发阶段，比如原型、测试、稳定或邻近发布。你也可以认为1.1版本发布是一个单独的阶段，也就是维护版本。  一个分支可以隔离一个特性的开发或者研究特别复杂的bug。例如，可以引入一个分支来">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2017/10/08/gitStep2_branch/images/banner.jpg">
+<meta property="og:updated_time" content="2017-10-08T09:03:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linfyShare">
+<meta name="twitter:description" content="Git - Step 2 什么时候是使用分支的好时机？ 一个分支通常代表一个单独的客户发布版，如果你想开始项目的1.1版本。但你知道一些客户想要保持1.0版本，那就把旧版本留作一个单独的分支  一个分支可以封装一个开发阶段，比如原型、测试、稳定或邻近发布。你也可以认为1.1版本发布是一个单独的阶段，也就是维护版本。  一个分支可以隔离一个特性的开发或者研究特别复杂的bug。例如，可以引入一个分支来">
+<meta name="twitter:image" content="http://yoursite.com/2017/10/08/gitStep2_branch/images/banner.jpg">
   
     <link rel="alternative" href="/atom.xml" title="linfyShare" type="application/atom+xml">
   
@@ -150,241 +156,230 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-gitStep2_branch" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git-Step-2"><a href="#Git-Step-2" class="headerlink" title="Git - Step 2"></a>Git - Step 2</h1><p><img src="./images/banner.jpg" style="width: 100%"></p>
+<h2 id="什么时候是使用分支的好时机？"><a href="#什么时候是使用分支的好时机？" class="headerlink" title="什么时候是使用分支的好时机？"></a>什么时候是使用分支的好时机？</h2><ul>
+<li><p>一个分支通常代表一个单独的客户发布版，如果你想开始项目的1.1版本。但你知道一些客户想要保持1.0版本，那就把旧版本留作一个单独的分支</p>
+</li>
+<li><p>一个分支可以封装一个开发阶段，比如原型、测试、稳定或邻近发布。你也可以认为1.1版本发布是一个单独的阶段，也就是维护版本。</p>
+</li>
+<li><p>一个分支可以隔离一个特性的开发或者研究特别复杂的bug。例如，可以引入一个分支来完成一个明确定义的、概念上孤立的任务，或在发布前帮助几个分支合并。</p>
+<p>只是为了解决一个 bug 就创建一个新分支，这看起来可能是杀鸡用牛刀了，但 Git 的分支系统恰恰鼓励这种小规模的使用。</p>
+</li>
+<li><p>每一个分支可以代表单个贡献者的工作。另一个分支——“集成”分支——可以专门用于凝聚力量。</p>
+</li>
+</ul>
+<blockquote>
+<p>《Git 版本控制管理（第二版）》</p>
+</blockquote>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="1-查看分支"><a href="#1-查看分支" class="headerlink" title="1. 查看分支"></a>1. 查看分支</h3><ul>
+<li><code>git branch</code> 查看分支名</li>
+<li><code>git show-branch</code> 查看各个分支详细信息</li>
+</ul>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<li><code>-r</code> 仅查看远程（remote）分支</li>
+<li><code>-a</code> 查看所有（local/remote）分支</li>
+</ul>
+<p><strong>ps:</strong> 上面两个命令都有这两个参数</p>
+<h3 id="2-git-checkout-lt-branchName-gt-切换分支"><a href="#2-git-checkout-lt-branchName-gt-切换分支" class="headerlink" title="2. git checkout &lt;branchName&gt; 切换分支"></a>2. <code>git checkout &lt;branchName&gt;</code> 切换分支</h3><h3 id="3-创建分支"><a href="#3-创建分支" class="headerlink" title="3. 创建分支"></a>3. 创建分支</h3><ol>
+<li><code>git branch &lt;branchName&gt;</code> 创建一个新的分支</li>
+<li><code>git checkout -b &lt;branchName&gt;</code> 创建一个分支，并切换到这个新的分支上</li>
+</ol>
+<h3 id="delete_branch">4. <code>git branch -D &lt;branchName&gt;</code> 删除分支</h3>
+
+<p>ps: 不能删除当前分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(b1) git branch -D b1</span><br><span class="line"><span class="comment"># error: Cannot delete the branch 'b1' which you are currently on.</span></span><br></pre></td></tr></table></figure>
+<h4 id="回退：根据-SHA1-值重新创建"><a href="#回退：根据-SHA1-值重新创建" class="headerlink" title="回退：根据 SHA1 值重新创建"></a>回退：根据 SHA1 值重新创建</h4><ol>
+<li>误删：删除成功后，会提供删除的 SHA1 值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(master) git branch -D testDel</span><br><span class="line">Deleted branch testDel (was cef8ed7).</span><br><span class="line"></span><br><span class="line">$(master) git branch testDel cef8ed7</span><br></pre></td></tr></table></figure>
+<ol>
+<li>不记得SHA1了，使用 <code>git reflog</code> 命令查看那个分支最近一次提交的 SHA1。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(master) git reflog</span><br><span class="line">fb69e96 HEAD@&#123;0&#125;: commit: save</span><br><span class="line">b7781e0 HEAD@&#123;1&#125;: checkout: moving from testDel to learnGitStepTwo</span><br><span class="line">cef8ed7 HEAD@&#123;2&#125;: commit: testDel save  <span class="comment"># 这是被删除的分支最后一次提交</span></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">$(master) git branch testDel cef8ed7</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.csdn.net/u010940300/article/details/47832791" target="_blank" rel="noopener">参考</a></p>
+<h3 id="5-git-merge-lt-branchName-gt-将合并到当前分支"><a href="#5-git-merge-lt-branchName-gt-将合并到当前分支" class="headerlink" title="5. git merge &lt;branchName&gt; 将合并到当前分支"></a>5. <code>git merge &lt;branchName&gt;</code> 将<branchname>合并到当前分支</branchname></h3><p><strong>ps:</strong> 工作目录和暂存区中的修改，在与合并项无关的时候才会合并。所以尽量保证合并时工作目录和<br>暂存区是干净的，这样合并会容易的多。</p>
+<h4 id="回退："><a href="#回退：" class="headerlink" title="回退："></a>回退：</h4><p>合并后没有新的提交：<br>  用 <code>git log</code> 查找到合并前的最后一次 commit。执行命令 <code>git reset --hard &lt;SHA1&gt;</code></p>
+<p>  ps:</p>
+<ol>
+<li>也可以使用  <code>git reset --hard HEAD~</code>，当然在你能熟练掌握 HEAD、^ 和 ~ 的意义时才行，</li>
+<li>如果不使用 <code>--hard</code> 参数，被合并的分支内容会保留到当前分支的暂存区。所以你需要视情况使用。<br>有可能你在合并之后又再次提交了，这是你考虑保留你之前的修改。可以考虑不使用 –hard</li>
+</ol>
+<h4 id="处理合并的冲突"><a href="#处理合并的冲突" class="headerlink" title="处理合并的冲突"></a>处理合并的冲突</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$(master) touch 1.txt</span><br><span class="line">           |</span><br><span class="line">           | edit master</span><br><span class="line">|-------------------------|      </span><br><span class="line">| master/1.txt            |</span><br><span class="line">| add one line <span class="keyword">for</span> init   | </span><br><span class="line">|-------------------------|</span><br><span class="line">           |</span><br><span class="line">           |------------&gt;&gt;&gt;------------|</span><br><span class="line">           |                           |</span><br><span class="line">           | edit master               | new branch b1 and edit</span><br><span class="line">|-------------------------|   |-------------------------|</span><br><span class="line">| master/1.txt            |   | b1/1.txt                |</span><br><span class="line">| add one line <span class="keyword">for</span> init   |   | add one line <span class="keyword">for</span> init   |</span><br><span class="line">|                         |   | add one line <span class="keyword">for</span> b1     |</span><br><span class="line">| add one line <span class="keyword">for</span> master |   |                         |</span><br><span class="line">|-------------------------|   |-------------------------|</span><br><span class="line">           |                           |</span><br><span class="line">           |    merge b1 to master     |</span><br><span class="line">           |------------&lt;&lt;&lt;------------|</span><br><span class="line"></span><br><span class="line">$(master) git merge b1</span><br><span class="line"></span><br><span class="line"><span class="comment"># Auto-merging 1.txt</span></span><br><span class="line"><span class="comment"># CONFLICT (content): Merge conflict in 1.txt</span></span><br><span class="line"><span class="comment"># Automatic merge failed; fix conflicts and then commit the result.           </span></span><br><span class="line">           </span><br><span class="line">           |</span><br><span class="line">|-------------------------|      </span><br><span class="line">| master/1.txt            |</span><br><span class="line">| add one line <span class="keyword">for</span> init   |</span><br><span class="line">| &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD            |</span><br><span class="line">|                         |</span><br><span class="line">| add one line <span class="keyword">for</span> master |</span><br><span class="line">| =======                 | </span><br><span class="line">| add one line <span class="keyword">for</span> b1     |</span><br><span class="line">| &gt;&gt;&gt;&gt;&gt;&gt;&gt; b1              |</span><br><span class="line">|-------------------------|</span><br><span class="line">           |</span><br><span class="line">           | handle confliction</span><br><span class="line">           |</span><br><span class="line">|-------------------------|      </span><br><span class="line">| master/1.txt            |</span><br><span class="line">| add one line <span class="keyword">for</span> init   |</span><br><span class="line">| add one line <span class="keyword">for</span> b1     |</span><br><span class="line">| add one line <span class="keyword">for</span> master |</span><br><span class="line">|-------------------------|</span><br><span class="line">           |</span><br><span class="line">           |</span><br><span class="line"></span><br><span class="line">$(master) git add .</span><br><span class="line">$(master) git commit -m <span class="string">"fix conflict between line2-3 and merge b1 to master"</span></span><br><span class="line"><span class="comment"># [master d299587] fix conflict between line2-3 and merge b1 to master</span></span><br><span class="line">$(master) git <span class="built_in">log</span> --graph --pretty=oneline</span><br><span class="line"></span><br><span class="line"><span class="comment"># *   d29958 fix conflict between line2-3 and merge b1 to master</span></span><br><span class="line"><span class="comment"># |\</span></span><br><span class="line"><span class="comment"># | * 6b84ea edit b1</span></span><br><span class="line"><span class="comment"># * | 632673 master edit</span></span><br><span class="line"><span class="comment"># |/</span></span><br><span class="line"><span class="comment"># * b79b59 master init</span></span><br></pre></td></tr></table></figure>
+<h4 id="回退：-1"><a href="#回退：-1" class="headerlink" title="回退："></a>回退：</h4><p>如果使用合并命令发现有冲突，此时想取消使用 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(master) git merge --abort</span><br></pre></td></tr></table></figure>
+<p><strong>ps:</strong> 多个文件冲突，需要分别处理后再提交。提交后会自动视为合并成功</p>
+<h2 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h2><p>指针，分支可达</p>
+<h3 id="树对象保存内容间的关系"><a href="#树对象保存内容间的关系" class="headerlink" title="树对象保存内容间的关系"></a>树对象保存内容间的关系</h3><h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="~ 和 ^ 的区别"></a><code>~</code> 和 <code>^</code> 的区别</h3><ul>
+<li><code>~</code> 第几级（第一个）父级</li>
+<li><code>^</code> 第几个父级</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">         A      A =      = A^0</span><br><span class="line">        / \</span><br><span class="line">       /   \</span><br><span class="line">      B     C   B = A^   = A^1     = A~1  </span><br><span class="line">     /|\    |   C = A^2  = A^2</span><br><span class="line">    / | \   |</span><br><span class="line">   /  |  \ /    D = A^^  = A^1^1   = A~2</span><br><span class="line">  D   E   F     E = B^2  = A^^2</span><br><span class="line"> / \     / \    F = B^3  = A^^3</span><br><span class="line">G   H   I   J</span><br><span class="line">                G = A^^^ = A^1^1^1 = A~3</span><br><span class="line">                H = D^2  = B^^2    = A^^^2  = A~2^2</span><br><span class="line">                I = F^   = B^3^    = A^^3^</span><br><span class="line">                J = F^2  = B^3^2   = A^^3^2</span><br></pre></td></tr></table></figure>
+<p>eg: <a href="https://stackoverflow.com/questions/2221658/whats-the-difference-between-head-and-head-in-git" target="_blank" rel="noopener">参考 - 翻墙</a></p>
+<h2 id="分支名规范"><a href="#分支名规范" class="headerlink" title="分支名规范"></a>分支名规范</h2><ul>
+<li>可以使用 <code>/</code> 创建一个分层的命名方案。但是，该分支名不能以斜线结尾。</li>
+<li>分支名不能以减号 <code>-</code> 开头</li>
+<li>以 <code>/</code> 分割的组件不能以 <code>.</code> 开头。eg: <code>feature/.new</code></li>
+<li>分支名的任何地方都不能包含两个连续的点 <code>..</code></li>
+<li>此外分支名不能包含以下内容<ul>
+<li>任何空格或其他空白符</li>
+<li>在 Git 中具有特殊含义的字符，包括波浪线 <code>~&#39;</code>、插入符 <code>^</code>、冒号 <code>:</code>、问号 <code>?</code>、星号 <code>*</code>、左方括号 <code>[</code></li>
+<li>ASCII码控制字符，即小于八进制 <code>\040</code> 的字符，或 <code>DEL</code> 字符（八进制<code>\177</code>）</li>
+</ul>
+</li>
+</ul>
+<p>这些规范由底层命令 <code>git check-ref-format</code> 强制检测</p>
+<h2 id="常用的分支名"><a href="#常用的分支名" class="headerlink" title="常用的分支名"></a>常用的分支名</h2><ul>
+<li><code>revert</code></li>
+<li><code>topic</code></li>
+<li><code>dev</code> 开发版 - <code>15.6-dev</code></li>
+<li><code>stable</code> 稳定版 - <code>0.5-stable</code></li>
+<li><code>bug</code></li>
+<li><code>test</code></li>
+<li><code>feature</code> 特性</li>
+<li><code>patch</code> 补丁</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-11T02:14:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/11/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/10/08/gitStep2_branch/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/Shader_1/" class="archive-article-date">
-  	<time datetime="2017-11-29T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/DLL&Reflection/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/10/08/Unity_Database_/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/08/gitStep3_remote/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/FX Maker /" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/23/PlayMaker/" class="archive-article-date">
-  	<time datetime="2017-11-23T02:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMaxAnimator/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/BitmapFont/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/3DMax/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/Timeline/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/09/UNet/" class="archive-article-date">
-  	<time datetime="2017-11-09T03:54:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -408,8 +403,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
