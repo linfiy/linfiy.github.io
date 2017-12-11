@@ -152,59 +152,464 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Socket" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-SQLiteManager" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/14/SQLiteManager/">SQLiteManager</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/14/SQLiteManager/" class="archive-article-date">
+  	<time datetime="2017-06-14T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-14</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-Socket的简单应用"><a href="#C-Socket的简单应用" class="headerlink" title="C# Socket的简单应用"></a><font color="MidnightBlue">C# Socket的简单应用</font></h1><h2 id="Socket的定义"><a href="#Socket的定义" class="headerlink" title="Socket的定义"></a><font color="RoyalBlue">Socket的定义</font></h2><p>  socket英文的含义为插座、孔，在我们的网络应用中通常称为套接字，大致理解为在tcp/ip网络抽象层中使用套接字ip+端口的网络通信协议,可认为是介于传输层与应用层中抽象出的socket层，我们可以使用它的接口来解决复杂的网络请求。<br> <img src="http://images.cnitblog.com/blog/349217/201312/05225723-2ffa89aad91f46099afa530ef8660b20.jpg" alt="GitHub"></p>
-<h2 id="Tcp-IP"><a href="#Tcp-IP" class="headerlink" title="Tcp/IP "></a><font color="RoyalBlue">Tcp/IP </font></h2><p>  <img src="http://images.cnitblog.com/blog/349217/201312/05230830-04807bb739954461a8bfc7513707f253.jpg" alt="GitHub"></p>
-<p><strong><font style="font-weight:bold;">定义： </font><br>  Transmission Control Protocol/Internet Protocol的简写，中译名为传输控制协议/因特网互联协议，又名网络通讯协议，是Internet最基本的协议、Internet国际互联网络的基础，由网络层的IP协议和传输层的TCP协议组成。</strong></p>
-<font style="font-weight:bold;">组成： </font><br>  由四部分組成，从低至高分別为链路层、网络层、传输层和应用层<br><em> 链路层：数据链路层是负责接收IP数据包并通过网络发送，或者从网络上接收物理帧，抽出IP数据包，交给IP层。主要表现为物理驱动，使用物理的方式进行数据交互。
-
-</em> 网络层：负责相邻计算机之间的通信。确定网络地址IP，对网络链接状况获取相关数据。<br><br><em> 传输层：提供应用程序间的通信。使用 tcp 或 udp 形式对主机进行网络请求，客户端与服务端使用流各自操作本地数据文本，以代理的形式实现通信。
-
-</em> 应用层：向用户提供一组常用的应用程序，主机上对网络获取的数据进行交互和效果展示。<br><br>## <font color="RoyalBlue">Socket通信过程</font><br><img src="http://images.cnitblog.com/blog/349217/201312/05232335-fb19fc7527e944d4845ef40831da4ec2.png" alt="GitHub"><br><br>### 名词解析：<br><br><em> IP：网络IP地址，网络进程唯一标识符。
-
-</em> 端口：应用进程中用来数据交互的接口，每个应用都有唯一的端口标识符。<br><br><em> IPv4，是互联网协议（Internet Protocol，IP）的第四版，也是第一个被广泛使用，构成现今互联网技术的基石的协议。1981年Jon Postel 在RFC791中定义了IP，Ipv4可以运行在各种各样的底层网络上，比如端对端的串行数据链路（PPP协议和SLIP协议) ，卫星链路等等。局域网中最常用的是以太网。<br>IPv4中规定IP地址长度为32，即有2^32-1（符号^表示升幂，下同）个地址
-
-</em> IPv6：<br>IPv6是Internet Protocol Version 6的缩写，其中Internet Protocol译为“互联网协议”。IPv6是IETF（互联网工程任务组，Internet Engineering Task Force）设计的用于替代现行版本IP协议（IPv4）的下一代IP协议。<br>IPv6中IP地址的长度为128，即有2^128-1个地址。<br>IPv6具有更高的安全性。在使用IPv6网络中用户可以对网络层的数据进行加密并对IP报文进行校验，极大的增强了网络的安全性。<br><br>## <font color="RoyalBlue">代码实现</font>
-
+        <h2 id="一、SQLiteManager"><a href="#一、SQLiteManager" class="headerlink" title="一、SQLiteManager"></a>一、SQLiteManager</h2><p>SQLiteManager是一个支持多国语言基于Web的SQLite数据库管理工具。它的特点包括多数据库管理，创建和连接；表格，数据，索引操作；视图，触发器，和自定义函数管理。数据导入/导出；数据库结构导出。</p>
+<blockquote>
+<p>安装 <a href="https://sqlitemanager.en.softonic.com/" target="_blank" rel="noopener">SQLiteManager</a> </p>
+</blockquote>
+<p>  在SVN的目录下 _EXAMPLE\md\170614<em>Unity</em> Database\Tools\</p>
+<h3 id="SQLiteManager的使用："><a href="#SQLiteManager的使用：" class="headerlink" title="SQLiteManager的使用："></a>SQLiteManager的使用：</h3><p>打开SQLiteManager，新建一个数据库，文件格式为*.sqlite,最终要放在Unity编辑器的StreamingAssets目录.</p>
+<p>ps: <a href="http://www.jianshu.com/p/1d3216b42d0b" target="_blank" rel="noopener">Unity特殊文件夹的说明</a></p>
+<h3 id="数据库文件在各平台的路径"><a href="#数据库文件在各平台的路径" class="headerlink" title="数据库文件在各平台的路径"></a>数据库文件在各平台的路径</h3><p><strong>TIP:</strong> 安卓平台把打出的包.apk 改为.zip格式，解压出来，会在 asset/下找到 数据库文件<br><img src="http://upload-images.jianshu.io/upload_images/3139616-0c3f4028e52c32a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="OD5WRTDZ_2)PNNRF58S_Y0E.png"></p>
+<h2 id="二、SQL语法："><a href="#二、SQL语法：" class="headerlink" title="二、SQL语法："></a>二、SQL语法：</h2><p><a href="http://www.jianshu.com/p/18c7db2c1d71" target="_blank" rel="noopener">深入研究参考网址</a></p>
+<h3 id="基础语句"><a href="#基础语句" class="headerlink" title="基础语句"></a>基础语句</h3><p>主要用到的是第11个，有些在SQLiteManager里就可以提前操作</p>
+<ol>
+<li><p>创建数据库(create)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">database</span>-<span class="keyword">name</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">not</span> exist students (<span class="keyword">ID</span> <span class="built_in">integer</span>, <span class="keyword">name</span> <span class="built_in">text</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据库(drop)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> dbname</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> teachers;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备份sql server (backup)</p>
 <ul>
-<li><p>初始化: 根据地址和端口创建socket资源</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">string</span>[] handled = tcp.Split(<span class="keyword">new</span> Char[]&#123;<span class="string">':'</span>&#125;);</span><br><span class="line"><span class="keyword">string</span> host = handled[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">int</span> hostPort = handled.Length &gt; <span class="number">1</span> ? <span class="keyword">int</span>.Parse(handled[<span class="number">1</span>]) : <span class="number">80</span>;</span><br><span class="line">  <span class="comment">//地址封装</span></span><br><span class="line">IPEndPoint port = <span class="keyword">new</span> IPEndPoint (Dns.GetHostAddresses(handled[<span class="number">0</span>])[<span class="number">0</span>], hostPort);		</span><br><span class="line">  <span class="comment">//创建socket资源，新实例初始化 Socket 类使用指定的地址族、 套接字类型和协议。	</span></span><br><span class="line">socket = <span class="keyword">new</span> Socket (</span><br><span class="line">	AddressFamily.InterNetwork,</span><br><span class="line">	System.Net.Sockets.SocketType.Stream,</span><br><span class="line">	ProtocolType.Tcp</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<li><p>创建 备份数据的 device</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> <span class="keyword">master</span></span><br><span class="line">EXEC sp_addumpdevice ‘disk’, ‘testBack’, ‘c:\mssql7backup\MyNwind_1.dat’</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>请求连接： 异步向服务器发送连接请求,连接成功向服务器发送心跳包(心跳：服务器与客户端进行通信，客户端实现双向保活),socket进行异步挂载，准备接收数据</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">//连接服务器</span></span><br><span class="line">  IAsyncResult result = socket.BeginConnect (</span><br><span class="line">	port, ConnectCallBack, socket</span><br><span class="line">);</span><br><span class="line">  <span class="comment">//5s内判断是否连接成功</span></span><br><span class="line">  <span class="keyword">bool</span> isSucced = result.AsyncWaitHandle.WaitOne (<span class="number">5000</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">ConnectCallBack</span>(<span class="params">IAsyncResult result</span>)</span>&#123;</span><br><span class="line">	Socket socket = (Socket) result.AsyncState;</span><br><span class="line">    <span class="comment">//异步挂载，等待数据接收</span></span><br><span class="line">	socket.BeginReceive (receiveData, <span class="number">0</span>, receiveData.Length, SocketFlags.None, <span class="keyword">new</span> AsyncCallback (RecivieCallBack), socket);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接收数据：客服端开启异步处理，开启挂载对服务器的数据进行监听，接收到数据进行拆包处理，发送给各个应用模块。之后再将socket进行异步挂载，准备接收数据</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">ConnectCallBack</span>(<span class="params">IAsyncResult result</span>)</span>&#123;</span><br><span class="line">	Socket socket = (Socket) result.AsyncState;</span><br><span class="line">	socket.BeginReceive (receiveData, <span class="number">0</span>, receiveData.Length, SocketFlags.None, <span class="keyword">new</span> AsyncCallback (RecivieCallBack), socket);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">RecivieCallBack</span>(<span class="params">IAsyncResult result</span>)</span>&#123;</span><br><span class="line">	Socket socket = (Socket)result.AsyncState;</span><br><span class="line">	<span class="comment">//接收长度</span></span><br><span class="line">	<span class="keyword">int</span> length = socket.EndReceive (result);</span><br><span class="line">	<span class="keyword">if</span>(length &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">		Console.Log(LogType.SOCKET, <span class="string">"server does not return data, but not disconnect"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">   <span class="comment">//保持数据同步，对二进制字节拆包处理</span></span><br><span class="line">	<span class="keyword">lock</span>(receiveData)&#123;</span><br><span class="line">		SplitePackage(receiveData,length);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(respsonList.Count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">			respsonList.ForEach(packet =&gt; &#123;</span><br><span class="line">				sub.OnNext(packet);</span><br><span class="line">			&#125;);</span><br><span class="line">			respsonList.Clear ();</span><br><span class="line">		&#125;</span><br><span class="line">		socket.BeginReceive (receiveData,<span class="number">0</span>, receiveData.Length, SocketFlags.None, <span class="keyword">new</span> AsyncCallback (RecivieCallBack), socket);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			<span class="comment">//Debug.LogError (e.ToString());</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>拆包：将从服务器接收的二进制数据进行拆包处理,根据包头获取数据长度，对二进制数据进行转化(* 处理粘包-&gt;使用循环，轮询处理 断包-&gt;将断包处保存再memoryStream中，再次接收数据的时候将包重新拼接)</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">SaveBreak</span>(<span class="params"><span class="keyword">byte</span>[] data,<span class="keyword">int</span> index</span>)</span>&#123;</span><br><span class="line">		streamLen = data.Length - index;</span><br><span class="line">		<span class="keyword">byte</span>[] breakData = <span class="keyword">new</span> <span class="keyword">byte</span>[streamLen];</span><br><span class="line">		Array.Copy (data,index,breakData,<span class="number">0</span>,breakData.Length);</span><br><span class="line">		stream.SetLength (streamLen);</span><br><span class="line">		stream.Write (breakData, <span class="number">0</span>, breakData.Length);</span><br><span class="line">		isBreakPacket = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">EndBreak</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (stream != <span class="literal">null</span>) &#123;</span><br><span class="line">     stream.Close ();</span><br><span class="line">     stream = <span class="keyword">new</span> MemoryStream ();</span><br><span class="line">     streamLen = <span class="number">0</span>;</span><br><span class="line">     isBreakPacket = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//拆包</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SplitePackage</span>(<span class="params"><span class="keyword">byte</span>[] data ,<span class="keyword">int</span> bufferLen</span>)</span>&#123;</span><br><span class="line">   <span class="comment">//包头位置</span></span><br><span class="line">   <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">   <span class="comment">//断包判断</span></span><br><span class="line">	<span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[bufferLen];</span><br><span class="line">	Array.Copy (data,bytes,bufferLen);</span><br><span class="line">	<span class="comment">//处于断包状态</span></span><br><span class="line">	<span class="keyword">if</span>(isBreakPacket)&#123;</span><br><span class="line">		<span class="keyword">byte</span>[] packetData = stream.ToArray ();</span><br><span class="line">		<span class="keyword">byte</span>[] newData = <span class="keyword">new</span> <span class="keyword">byte</span>[streamLen + bufferLen];</span><br><span class="line">		Array.Copy (packetData, <span class="number">0</span>, newData, <span class="number">0</span>, streamLen);</span><br><span class="line">		index += streamLen;</span><br><span class="line">		Array.Copy (bytes, <span class="number">0</span>, newData, index, bufferLen);</span><br><span class="line">		bytes = newData;</span><br><span class="line">		index=<span class="number">0</span>;</span><br><span class="line">		EndBreak ();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//循环拆包（粘包处理）</span></span><br><span class="line">	<span class="keyword">while</span>(index&lt;bytes.Length)&#123;</span><br><span class="line">		<span class="comment">//断包头</span></span><br><span class="line">		<span class="keyword">if</span>((index+<span class="number">4</span>)&gt;=bytes.Length)&#123;</span><br><span class="line">			SaveBreak (bytes, index);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//拆包头</span></span><br><span class="line">		<span class="keyword">byte</span>[] head =<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4</span>];</span><br><span class="line">		Array.Copy (bytes,index,head,<span class="number">0</span>,<span class="number">4</span>);</span><br><span class="line">		index += <span class="number">4</span>;</span><br><span class="line">		Array.Reverse(head);</span><br><span class="line">		<span class="keyword">int</span> count = BitConverter.ToInt32 (head,<span class="number">0</span>);</span><br><span class="line">		<span class="comment">//异常处理</span></span><br><span class="line">		<span class="keyword">if</span>(count&gt;<span class="number">8192</span>)&#123;</span><br><span class="line">			EndBreak ();</span><br><span class="line">			HandleError (<span class="string">"包头过长"</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//断内容处理</span></span><br><span class="line">		<span class="keyword">if</span>((index+count)&gt;bytes.Length)&#123;</span><br><span class="line">			index -= <span class="number">4</span>;</span><br><span class="line">			SaveBreak (bytes,index);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//正常包处理</span></span><br><span class="line">		<span class="keyword">byte</span>[] callbackData =<span class="keyword">new</span> <span class="keyword">byte</span>[count];</span><br><span class="line">		Array.Copy(bytes,index,callbackData,<span class="number">0</span>,count);</span><br><span class="line">		<span class="keyword">string</span> iContent =Encoding.UTF8.GetString (callbackData);</span><br><span class="line">		<span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">			EndBreak();</span><br><span class="line">			HandleError (<span class="string">"接收数据为空"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		respsonList.Add (iContent);</span><br><span class="line">		index += callbackData.Length;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送请求：客户端将发送的数据转化成二进制字节，进行装包处理发送给服务器</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SendMessage</span>(<span class="params"><span class="keyword">string</span> str</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(socket!=<span class="literal">null</span>&amp;&amp;!socket.Connected) &#123;</span><br><span class="line">		EndBreak();</span><br><span class="line">		HandleError(<span class="string">"socket is not connecting || socket is not existed"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">byte</span>[] msg = Encoding.UTF8.GetBytes(str);</span><br><span class="line">	<span class="keyword">int</span> mesgLength = msg.Length;</span><br><span class="line">	<span class="keyword">byte</span>[] head = BitConverter.GetBytes (mesgLength);</span><br><span class="line">	<span class="keyword">byte</span>[] sendData = <span class="keyword">new</span> <span class="keyword">byte</span>[mesgLength+head.Length];</span><br><span class="line">	Array.Reverse (head);<span class="comment">//服务器与客户端的包头的解析顺序是相反的</span></span><br><span class="line">	Array.Copy (head, sendData, head.Length);</span><br><span class="line">	Array.Copy (msg,<span class="number">0</span>,sendData,head.Length,msg.Length);</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		IAsyncResult asyncSend = socket.BeginSend (sendData,<span class="number">0</span>,sendData.Length,SocketFlags.None,<span class="keyword">new</span> AsyncCallback (sendCallback),socket);</span><br><span class="line">		<span class="keyword">bool</span> success = asyncSend.AsyncWaitHandle.WaitOne( <span class="number">7000</span>, <span class="literal">true</span> );</span><br><span class="line">		<span class="keyword">if</span> (!success) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> ApplicationException();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">       Console.Log (LogType.SOCKET_SEND, str);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> &#123;</span><br><span class="line">		Console.Log(LogType.SOCKET, <span class="string">"send message exceptionally"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">//请求成功</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sendCallback</span> (<span class="params">IAsyncResult asyncSend</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">         ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关闭：断开连接,关闭socket资源</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Closed</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(socket != <span class="literal">null</span> &amp;&amp; socket.Connected) &#123;</span><br><span class="line">       <span class="comment">//先停止接收和发送的服务</span></span><br><span class="line">			socket.Shutdown(SocketShutdown.Both);</span><br><span class="line">       <span class="comment">//关闭socket资源</span></span><br><span class="line">			socket.Close();</span><br><span class="line">			<span class="keyword">if</span>(disposable!=<span class="literal">null</span>)&#123;</span><br><span class="line">				disposable.Dispose();</span><br><span class="line">			&#125;</span><br><span class="line">				socket = <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">   <span class="comment">//必须加上，客户端使用轮询处理断线重连时候有可能多次调用，异步导致报错使程序直接卡死</span></span><br><span class="line">	<span class="keyword">catch</span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>开始 备份</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BACKUP</span> <span class="keyword">DATABASE</span> pubs <span class="keyword">TO</span> testBack</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><font color="RoyalBlue">常见问题</font></h2><ul>
-<li>数据同步： unity引擎中MonBehaviour只能处理主线程的数据，而我们socket请求数据是异步请求的</li>
-<li>拆包：当出现粘包、断包</li>
-<li>重连：应用保活与断线重连</li>
-<li>异常处理：socket异步访问异常导致程序卡死</li>
+</li>
+<li><p>创建表(create)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tabname(col1 type1 [<span class="keyword">not</span> <span class="literal">null</span>] [primary <span class="keyword">key</span>],col2 type2 [<span class="keyword">not</span> <span class="literal">null</span>],..)</span><br></pre></td></tr></table></figure>
+<p>根据已有的表创建新表：</p>
+<ul>
+<li><p>A：(使用旧表创建新表)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tab_new <span class="keyword">like</span> tab_old</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>B：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tab_new <span class="keyword">as</span> <span class="keyword">select</span> col1,col2… <span class="keyword">from</span> tab_old definition <span class="keyword">only</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="优化改进"><a href="#优化改进" class="headerlink" title="优化改进"></a><font color="RoyalBlue">优化改进</font></h2><ul>
-<li>buffer:创建缓冲类，将每次的数据进行管理</li>
-<li>创建包体实体类，对游戏数据进行封装</li>
+</li>
+<li><p>删除表(drop)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> tabname</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加一个列(alter…column)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> tabname <span class="keyword">add</span> <span class="keyword">column</span> <span class="keyword">col</span> <span class="keyword">type</span></span><br></pre></td></tr></table></figure>
+<p><strong>注：</strong> 列增加后将不能删除。DB2中列加上后数据类型也不能改变，唯一能改变的是增加varchar类型的长度。</p>
+</li>
+<li><p>添加主键(alter)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> tabname <span class="keyword">add</span> primary <span class="keyword">key</span>(<span class="keyword">col</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除主键(alter)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Alter</span> <span class="keyword">table</span> tabname <span class="keyword">drop</span> primary <span class="keyword">key</span>(<span class="keyword">col</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>索引</p>
+<ul>
+<li><p>创建索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> [<span class="keyword">unique</span>] <span class="keyword">index</span> idxname <span class="keyword">on</span> tabnam (<span class="keyword">col</span>….)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> idxname</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><font color="RoyalBlue">参考链接</font></h2><ul>
-<li>百度TCP/IP协议:<br><a href="http://baike.baidu.com/item/TCP%2FIP%E5%8D%8F%E8%AE%AE?fromId=7729#3_3" target="_blank" rel="noopener">百度</a></li>
-<li>百度Socket：<br><a href="http://baike.baidu.com/item/socket/281150" target="_blank" rel="noopener">百度</a></li>
-<li>Socket_API：<br><a href="https://msdn.microsoft.com/zh-cn/library/system.net.sockets.socket(v=vs.110" target="_blank" rel="noopener">微软官网</a>.aspx)</li>
-<li>Socket拆包处理：<br><a href="http://blog.csdn.net/pi9nc/article/details/17165171" target="_blank" rel="noopener">Socket/TCP粘包、多包和少包, 断包</a></li>
+<p><strong>注：</strong> 索引是不可更改的，想更改必须删除重新建。</p>
+</li>
+<li><p>视图</p>
+<ul>
+<li><p>创建视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> viewname <span class="keyword">as</span> <span class="keyword">select</span> <span class="keyword">statement</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> viewname</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>几个简单的基本的sql语句</p>
+</li>
+</ol>
+<ul>
+<li><p>选择：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table1 <span class="keyword">where</span> 范围</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table1(field1,field2) <span class="keyword">values</span> (value1,value2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table1 <span class="keyword">where</span> 范围</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table1 <span class="keyword">set</span> field1=value1 <span class="keyword">where</span> 范围</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table1 <span class="keyword">where</span> field1 <span class="keyword">like</span>’%value1%’ —<span class="keyword">like</span>的语法很精妙，查资料!</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> @ <span class="keyword">from</span> table1 <span class="keyword">order</span> <span class="keyword">by</span> field1,field2 [<span class="keyword">desc</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总数：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span> <span class="keyword">as</span> totalcount <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求和：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(field1) <span class="keyword">as</span> sumvalue <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>平均：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(field1) <span class="keyword">as</span> avgvalue <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最大：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(field1) <span class="keyword">as</span> maxvalue <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最小：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(field1) <span class="keyword">as</span> <span class="keyword">minvalue</span> <span class="keyword">from</span> table1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="三、Unity编辑器里的准备"><a href="#三、Unity编辑器里的准备" class="headerlink" title="三、Unity编辑器里的准备"></a>三、Unity编辑器里的准备</h2><p>(在demo工程里都有)</p>
+<p>Unity编辑器Plugins下需要的库： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mono.Data.Sqlite.dll  </span><br><span class="line">sqlite3.dll   </span><br><span class="line">System.Data.dll</span><br></pre></td></tr></table></figure>
+<p>Android平台需要 <code>Plugins/Android/libsqlite3.so
+StreamingAssets/</code></p>
+<p>在SQLiteManager 里创建的数据库名称.sqlite</p>
+<h2 id="四、封装数据库连接的工具DataBaseTool"><a href="#四、封装数据库连接的工具DataBaseTool" class="headerlink" title="四、封装数据库连接的工具DataBaseTool"></a>四、封装数据库连接的工具DataBaseTool</h2><p>例子里的DataBaseTool脚本</p>
+<ol>
+<li>创建数据库连接。     </li>
+<li>打开数据库连接    </li>
+<li>创建Command对象并设置sql语句 </li>
+<li>调用ExecuteNonQuery ExecuteReader方法,执行sql语句并获得结果</li>
+<li>关闭连接。</li>
+</ol>
+<h2 id="五、使用上述工具类进行数据操作"><a href="#五、使用上述工具类进行数据操作" class="headerlink" title="五、使用上述工具类进行数据操作"></a>五、使用上述工具类进行数据操作</h2><p>参见例子demo里的 DataTest脚本</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> LitJson;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DataTest</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  List&lt;Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">object</span>&gt;&gt; result;</span><br><span class="line">  <span class="keyword">string</span> database_Name;</span><br><span class="line">  <span class="keyword">string</span> sql;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="comment">//StreamingAssets目录下的数据库文件</span></span><br><span class="line">    database_Name = <span class="string">"mydatabase.sqlite"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//这个地方可以连着写sql语句,用分号隔开，这样数据库连接就只用走一次</span></span><br><span class="line">    sql = <span class="string">"insert into Player values('qaq','1001','24');delete from Player where Name='wangwu' ;select * from Player "</span>;</span><br><span class="line">    result = DataBaseTool.GetInstance(database_Name).ExcuteAllRresult(sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><h3 id="DataBaseTool进行了简化"><a href="#DataBaseTool进行了简化" class="headerlink" title="DataBaseTool进行了简化"></a>DataBaseTool进行了简化</h3><p>核心 <code>public List&lt;Dictionary&lt;string, object&gt;&gt; ExcuteAllRresult(string sql){}</code></p>
+<p>构造方法 <code>private DataBaseTool(string databaseName){}</code></p>
+<p>Android 平台得注意数据库的路径 <code>public string AndriodPaltformSet(string databaseName){}</code></p>
+<h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><ol>
+<li>数据库不要实时更新，多用于存档</li>
+<li>设计表的时候空值的问题，查找的结果不会报错，在SQLiteManager里看到为NULL</li>
+<li>其他关于中途数据库断开连接的问题，可以自行尝试，这些异常都会在 SqliteException 类里抛出 参考Try…Catch…的使用</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQLiteManager</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/14/SQLiteManager/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-svn快速操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/14/svn快速操作/">svn快速操作</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/14/svn快速操作/" class="archive-article-date">
+  	<time datetime="2017-06-14T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#一、TortoiseSVN.exe 命令行和GUI形式结合</p>
+<p>###命令行格式<br>这个命令可以在cmd下直接执行，任何目录下都可以（往下看有例子）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TortoiseProc.exe /command:命令名/path:路径参数 /额外参数</span><br></pre></td></tr></table></figure></p>
+<p>命令名：必须是规定的命令名<br>路径参数：/path:”some\path” ,多个路径用*分割<br>进度完成后的操作可以传递 /closeonend  额外参数<br>0:不自动关闭对话框<br>1:如果没发生错误则自动关闭对话框<br>2:如果没发生错误和冲突则自动关闭对话框<br>3:如果没有错误、冲突和合并，会自动关闭<br>4:如果没有错误、冲突和合并，会自动关闭</p>
+<p>###常用command命令<br>log   日志<br>update 更新<br>commit 提交<br>revert 恢复</p>
+<p>###例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对一个目录下的文件更新，如果没有错误、冲突和合并，会自动关闭</span><br><span class="line">TortoiseProc.exe /command:update /path:&quot;d:/svn/&quot;/closeonend:3</span><br><span class="line">对多个个目录下的文件更新，如果没有错误、冲突和合并，会自动关闭</span><br><span class="line">TortoiseProc.exe/command:update/path:&quot;d:/svn/svn1/*d:/svn/svn2/&quot;/closeonend:3</span><br></pre></td></tr></table></figure></p>
+<p>###自定义.bat文件<br>1.新建一个文本文档，把svn命令写进去<br>2.保存改文本格式为.bat<br>3.双击运行即可看到效果<br>ps：可以自己分别新建4个.bat文本，与常用命令对应(update,commmit,revert,log),然后每次要进行svn的操作就运行.bat就好了</p>
+<p>#二.SVN纯命令行形式（这种方式很原始，推荐使用一）<br>需要在安装TortoiseSVN.exe时勾选command line client tools，这样会在系统环境变量里加入这个C:\Program Files\TortoiseSVN\bin，这样  “svn” 才是一个可用的命令<br>PS：这些命令不加path参数的，在想要操作的目录下  shift+右键–在此处打开cmd窗口（装了别的cmd工具就是对应的，最后目的就是要进入命令行），以下各个命令有特殊说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令行里</span><br><span class="line">svn update -r m path  //m版本号</span><br><span class="line">svn revert path</span><br><span class="line">svn commit -m &quot;LogMessage&quot; test.php</span><br><span class="line">svn log path</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3139616-8b08202e5c641532.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="svncommandline.png"><br>1、svn checkout path（path是服务器上的目录）将文件checkout到本地目录<br>例如：svn checkout svn://192.168.1.1/pro/domain    简写：svn co </p>
+<p>2、svn add file  往版本库中添加新的文件<br> 例如：svn add test.php(添加test.php)   svn add *.<a href="http://lib.csdn.net/base/php" target="_blank" rel="noopener">PHP</a>(添加当前目录下所有的<a href="http://lib.csdn.net/base/php" target="_blank" rel="noopener">php</a>文件) </p>
+<p>######3、将改动的文件提交到版本库    svn commit -m “LogMessage” [-N] [–no-unlock] PATH(如果选择了保持锁，就使用–no-unlock开关)    例如：svn commit -m “add test file for my test” test.php    简写：svn ci </p>
+<p>######4、更新到某个版本    svn update -r m path    例如：    svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。    svn update -r 200 test.php(将版本库中的文件test.php还原到版本200)    svn update test.php(更新，于版本库同步。如果在提交的时候提示过期的话，是因为冲突，需要先update，修改文件，然后清除svn resolved，最后再提交commit)   简写：svn up </p>
+<p> ######5、查看日志    svn log path   例如：svn log test.php 显示这个文件的所有修改记录，及其版本号的变化 </p>
+<p>######6、恢复本地修改     svn revert: 恢复原始未改变的工作副本文件 (恢复大部份的本地修改)。revert:    用法: revert PATH…    注意: 本子命令不会存取网络，并且会解除冲突的状况。但是它不会恢复         被删除的目录   </p>
+<p>7、加锁/解锁    svn lock -m “LockMessage” [–force] PATH   例如：svn lock -m “lock test file” test.php   svn unlock PATH </p>
+<p>8、查看文件或者目录状态    1）svn status path（目录下的文件和子目录的状态，正常状态不显示）    【?：不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】   2）svn status -v path(显示文件和子目录状态)    第一列保持相同，第二列显示工作版本号，第三和第四列显示最后一次修改的版本号和修改人。    注：svn status、svn diff和 svn revert这三条命令在没有网络的情况下也可以执行的，原因是svn在本地的.svn中保留了本地版本的原始拷贝。   简写：svn st  </p>
+<p>9、删除文件    svn delete path -m “delete test fle”   例如：svn delete svn://192.168.1.1/pro/domain/test.php -m “delete test file”   或者直接svn delete test.php 然后再svn ci -m ‘delete test file‘，推荐使用这种   简写：svn (del, remove, rm)<br>10、查看文件详细信息    svn info path   例如：svn info test.php</p>
+<p> 11、比较差异    svn diff path(将修改的文件与基础版本比较)   例如：svn diff test.php        svn diff -r m:n path(对版本m和版本n比较差异)   例如：svn diff -r 200:201 test.php   简写：svn di </p>
+<p>12、将两个版本之间的差异合并到当前文件    svn merge -r m:n path   例如：svn merge -r 200:205 test.php（将版本200与205之间的差异合并到当前文件，但是一般都会产生冲突，需要处理一下）<br>13、SVN 帮助    svn help   svn help ci</p>
+<p>14、版本库下的文件和目录列表    svn list path   显示path目录下的所有属于版本库的文件和目录   简写：svn ls  </p>
+<p>15、创建纳入版本控制下的新目录    svn mkdir: 创建纳入版本控制下的新目录。   用法: 1、mkdir PATH…        2、mkdir URL…  </p>
+<p>16、代码库URL变更      svn switch (sw): 更新工作副本至不同的URL。     用法: 1、switch URL [PATH]           2、switch –relocate FROM TO [PATH…]            1、更新你的工作副本，映射到一个新的URL，其行为跟“svn update”很像，也会将              服务器上文件与本地文件合并。这是将工作副本对应到同一仓库中某个分支或者标记的              方法。           2、改写工作副本的URL元数据，以反映单纯的URL上的改变。当仓库的根URL变动              (比如方案名或是主机名称变动)，但是工作副本仍旧对映到同一仓库的同一目录时使用              这个命令更新工作副本与仓库的对应关系。   </p>
+<p>17、解决冲突     svn resolved: 移除工作副本的目录或文件的“冲突”状态。    用法: resolved PATH…    注意: 本子命令不会依语法来解决冲突或是移除冲突标记；它只是移除冲突的    相关文件，然后让 PATH 可以再次提交。  </p>
+<p> 18、输出指定文件或URL的内容。    svn cat 目标[@版本]…如果指定了版本，将从指定的版本开始查找。   svn cat -r PREV filename &gt; filename (PREV 是上一版本,也可以写具体版本号,这样输出结果是可以提交的)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">svn</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/14/svn快速操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Singleton" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/23/Singleton/">Singleton</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/23/Singleton/" class="archive-article-date">
+  	<time datetime="2017-05-23T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h1><h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h3 id="修饰符-sealed"><a href="#修饰符-sealed" class="headerlink" title="修饰符 sealed"></a>修饰符 sealed</h3><p><a href="https://docs.microsoft.com/zh-cn/dotnet/articles/csharp/language-reference/keywords/sealed" target="_blank" rel="noopener">msdn</a></p>
+<ul>
+<li>应用于某个类时，sealed 修饰符可阻止其他类继承自该类。 </li>
+<li>还可以对替代基类中的虚方法或属性的方法或属性使用 sealed 修饰符。 这使你可以允许类派生自你的类并防止它们替代特定虚方法或属性。</li>
+</ul>
+<h3 id="判断为空"><a href="#判断为空" class="headerlink" title="判断为空"></a>判断为空</h3><ol>
+<li><code>??</code></li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (button == <span class="literal">null</span>) button = GetComponent&lt;Button&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.</span></span><br><span class="line"></span><br><span class="line">button = button ?? GetComponent&lt;Button&gt;();</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>?.</code></li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (button != <span class="literal">null</span>) button.onClick.AddListener(Foo);</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.</span></span><br><span class="line"></span><br><span class="line">button?.onClick.AddListener(Foo);</span><br></pre></td></tr></table></figure>
+<h2 id="单例-1"><a href="#单例-1" class="headerlink" title="单例"></a>单例</h2><ol>
+<li><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">UserData</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> UserData uniqueInstance;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> UserData singleton &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">return</span> uniqueInstance ?? (uniqueInstance = <span class="keyword">new</span> UserData()); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  UserData () &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>example.a</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">UserData</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> UserData uniqueInstance = <span class="keyword">new</span> UserData();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> UserData singleton &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123; <span class="keyword">return</span> uniqueInstance; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>example.b</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">UserData</span> &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  UserData () &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>example.c</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">UserData</span> &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="keyword">static</span> UserData uniqueInstance;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">readonly</span> <span class="keyword">object</span> syncObject = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> UserData singleton &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (uniqueInstance == <span class="literal">null</span>)</span><br><span class="line">      <span class="keyword">lock</span> (syncObject)</span><br><span class="line">      <span class="keyword">if</span> (uniqueInstance == <span class="literal">null</span>) uniqueInstance = <span class="keyword">new</span> UserData();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>example.a 惰性实例化，占用内存少</li>
+<li>example.b 私有化构造函数，确保单例</li>
+<li>example.c 线程安全(多线程)</li>
+</ul>
+<h2 id="Unity-项目中的单例"><a href="#Unity-项目中的单例" class="headerlink" title="Unity 项目中的单例"></a>Unity 项目中的单例</h2><ol>
+<li>Awake</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UIController</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> UIController instance;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Awake</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    instance = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>确保一个类只有一个实例，并提供一个全局访问点</p>
+</blockquote>
+<p><strong>关键词</strong>: <code>Singleton</code>, <code>Unique Instance</code>, <code>Lazy Instantiate</code></p>
+<p>协程说到底还是异步操作，不能完全代替构造函数来对实例进行初始化。</p>
+<h2 id="单例的适用场景"><a href="#单例的适用场景" class="headerlink" title="单例的适用场景"></a>单例的适用场景</h2><p>使用场景：数据库连接，线程池，对话框，缓存。</p>
+<p>不能单纯的为了分离而使用单例模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">table</span><br><span class="line">  |- outedStore</span><br><span class="line">  |- Undraw</span><br><span class="line">  |- EWSN</span><br><span class="line">  |- List&lt;PlayerArea&gt;</span><br><span class="line">      |- Discard</span><br><span class="line">      |- HandTile</span><br><span class="line">      ...</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">table.playersArea[2].Discard.Push();</span><br><span class="line">GameManager.instance.tableManager</span><br><span class="line">interface.user.UpdateCurrency();</span><br><span class="line"></span><br><span class="line">[x] TableManager.instance.undraw;</span><br><span class="line">[x] User.singleton.UpdateCurrency();</span><br></pre></td></tr></table></figure>
+<h2 id="exLink"><a href="#exLink" class="headerlink" title="exLink"></a>exLink</h2><p><a href="http://blog.csdn.net/tab_space/article/details/51104824" target="_blank" rel="noopener">Unity组件的基类单例模式</a><br><a href="http://www.jb51.net/article/100783.htm" target="_blank" rel="noopener">c#单例模式（Singleton）的6种实现</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java &gt;　1.4</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton uniqueInstance;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Singletion</span> <span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">        <span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) uniqueInstance = <span class="keyword">new</span> Singleton();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> uniqueInstance;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Singleton</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/23/Singleton/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ReactiveX" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/20/ReactiveX/">ReactiveX</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/20/ReactiveX/" class="archive-article-date">
+  	<time datetime="2017-05-20T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ReactiveX"><a href="#ReactiveX" class="headerlink" title="ReactiveX"></a>ReactiveX</h1><p><a href="http://reactivex.io/" target="_blank" rel="noopener">reactiveX</a><br><a href="https://github.com/neuecc/UniRx" target="_blank" rel="noopener">uniRx</a><br><a href="https://robin-front.github.io/RxJS-doc-chinese/" target="_blank" rel="noopener">rx-book 中文版</a><br><a href="http://reactivex.io/documentation/operators.html" target="_blank" rel="noopener">Operators</a></p>
+<ol>
+<li><p>理解流</p>
+</li>
+<li><p>双击</p>
+</li>
+<li><p>延时输入</p>
+</li>
+</ol>
+<h2 id="Base"><a href="#Base" class="headerlink" title="Base"></a>Base</h2><ul>
+<li>Linq</li>
+<li>响应式编程</li>
+<li>函数式编程</li>
+<li>不可变性(immutability)</li>
 </ul>
 
       
@@ -214,11 +619,130 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ReactiveX</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/08/Socket/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/20/ReactiveX/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CSharpTips" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/15/CSharpTips/">CSharpTips</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/15/CSharpTips/" class="archive-article-date">
+  	<time datetime="2017-05-15T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关于分享"><a href="#关于分享" class="headerlink" title="关于分享"></a>关于分享</h3><table>
+<thead>
+<tr>
+<th>weekly</th>
+<th>15:00 - 15:30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>周一</td>
+<td>*业务相关分享（unity/C#，工具）</td>
+</tr>
+<tr>
+<td>周三</td>
+<td>Review Code、优化</td>
+</tr>
+<tr>
+<td>周五</td>
+<td>*其他技术分享（JavaScript）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="本周预告"><a href="#本周预告" class="headerlink" title="本周预告:"></a>本周预告:</h3><p>周一 C# tips:<br>周三 Review: 主题<a href="https://en.wikipedia.org/wiki/Don&#39;t_repeat_yourself" target="_blank" rel="noopener">DRY</a><br>周五 JavaScript: 词法作用域和闭包</p>
+<hr>
+<h3 id="两本关于C-的书"><a href="#两本关于C-的书" class="headerlink" title="两本关于C#的书"></a>两本关于C#的书</h3><ol>
+<li><a href="http://www.ituring.com.cn/book/1746" target="_blank" rel="noopener">C#经典实例</a> </li>
+<li><a href="https://s3-ap-southeast-1.amazonaws.com/mylekha-ebook/IT+%26+Programming/c_c%2B%2B_c%23/C%23+6.0+in+a+Nutshell.pdf" target="_blank" rel="noopener">C# 6.0 in a Nutshell 电子版</a></li>
+<li><a href="http://www.ituring.com.cn/" target="_blank" rel="noopener">图灵社区</a></li>
+</ol>
+<h3 id="C-tips"><a href="#C-tips" class="headerlink" title="C# tips"></a>C# tips</h3><h4 id="1-获取泛型默认值"><a href="#1-获取泛型默认值" class="headerlink" title="1.获取泛型默认值"></a>1.获取泛型默认值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public T getDefault&lt;T&gt; () &#123; return default(T); &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-常量"><a href="#2-常量" class="headerlink" title="2.常量"></a>2.常量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Foo &#123;</span><br><span class="line">  // 静态常量: 声明时必须赋值, 只能编译时初始化</span><br><span class="line">  const int MAX_COUNT = 6;</span><br><span class="line"></span><br><span class="line">  // 实例常量: 可以在运行时初始化</span><br><span class="line">  readonly Vector3 POSITION = new Vector3(1, 12, 3);</span><br><span class="line">  readonly Color COLOR;</span><br><span class="line">  public Foo (Color color) &#123; COLOR = color; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-约束类型"><a href="#3-约束类型" class="headerlink" title="3.约束类型"></a>3.约束类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">T AddChildComponent&lt;T&gt; (string findPath) where T: MonoBehaviour &#123;</span><br><span class="line">  var childTransform = transform.FindChild(findPath);</span><br><span class="line">  return childTransform.gameObject.AddComponent&lt;T&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-lamada-表达式代替匿名函数"><a href="#4-lamada-表达式代替匿名函数" class="headerlink" title="4.lamada 表达式代替匿名函数"></a>4.lamada 表达式代替匿名函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 无参数，无返回值</span><br><span class="line">() =&gt; &#123; int a = 1; &#125;   </span><br><span class="line"></span><br><span class="line">// 无参数，有返回值</span><br><span class="line">() =&gt; &#123; </span><br><span class="line">     int a = 1;</span><br><span class="line">     return a;</span><br><span class="line">&#125;</span><br><span class="line">() =&gt; int a = 1;</span><br><span class="line"></span><br><span class="line">// 有参数，有返回值</span><br><span class="line">(a, b) =&gt; &#123; return a + b; &#125;</span><br><span class="line">(a, b) =&gt; a + b</span><br><span class="line">(int a, int b) =&gt; a + b</span><br><span class="line"></span><br><span class="line">// 单参数可省略括号</span><br><span class="line">a =&gt; a + 1</span><br><span class="line"></span><br><span class="line">/*********/</span><br><span class="line">a =&gt; b =&gt; a + b</span><br></pre></td></tr></table></figure>
+<h4 id="5-委托的简单简单写法"><a href="#5-委托的简单简单写法" class="headerlink" title="5.委托的简单简单写法"></a>5.委托的简单简单写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using System;</span><br><span class="line">public class ShortDelegate: MonoBehaviour &#123;</span><br><span class="line"></span><br><span class="line">  delegate int IntegerPipe (int input);</span><br><span class="line">  IntegerPipe AddOne = input =&gt; ++input;</span><br><span class="line">  Func&lt;int, int&gt; ReduceOne = input =&gt; --input;</span><br><span class="line"></span><br><span class="line">  delegate void NoReturnNoInput (); </span><br><span class="line">  NoReturnNoInput PrintInt = () =&gt; &#123; Debug.Log(1); &#125;;</span><br><span class="line">  Action PrintString = () =&gt; &#123; Debug.Log(&quot;1&quot;); &#125;;</span><br><span class="line"></span><br><span class="line">  delegate bool ReturnBool (int input);</span><br><span class="line">  ReturnBool GetIntegerValue = input =&gt; input != 0;</span><br><span class="line">  Predicate&lt;string&gt; GetStringValue = input =&gt; input != &quot;&quot; &amp;&amp; input != null;</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">  a. Delegate  至少0个参数，至多32个参数，可以无返回值，也可以指定返回值类型</span><br><span class="line">  b. Func      至少0个参数，至多4个参数，根据最后一个泛型指定返回类型。必须有返回值，不可void </span><br><span class="line">  c. Action    至少0个参数，至多4个参数，无返回值 </span><br><span class="line">  d. Predicate 至少1个参数，至多1个参数，返回值固定为bool</span><br><span class="line">  e. 超过4个参数看 C# 经典实例</span><br><span class="line">  */</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  void Start () &#123;</span><br><span class="line">    Debug.Log(AddOne(0));           // int =&gt; 1</span><br><span class="line">    Debug.Log(ReduceOne(0));        // int =&gt; -1</span><br><span class="line"></span><br><span class="line">    PrintInt();                     // int =&gt; 1</span><br><span class="line">    PrintString();                  // string =&gt; &quot;1&quot;</span><br><span class="line"></span><br><span class="line">    Debug.Log(GetIntegerValue(0));  // bool =&gt; false</span><br><span class="line">    Debug.Log(GetStringValue(&quot;a&quot;)); // bool =&gt; true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/15/CSharpTips/">展开全文 >></a>
         </p>
       
 
@@ -343,6 +867,98 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">3DMax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">3DMaxAnimator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">BitmapFont</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">C#</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Chrome</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DLL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Reflection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">FXMaker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">LINQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ReactiveX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">PlayMaker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQLiteManager</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Singleton</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">TimeLine</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ToLua</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">UNet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">svn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shader</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">题外话：如何月入50K</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
