@@ -223,6 +223,114 @@
 
 
   
+    <article id="post-RtS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/RtS/">RTS</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/RtS/" class="archive-article-date">
+  	<time datetime="2017-12-08T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Unity实战-RTS3D即时战略游戏开发（一）：场景"><a href="#Unity实战-RTS3D即时战略游戏开发（一）：场景" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发（一）：场景"></a>Unity实战 RTS3D即时战略游戏开发（一）：场景</h1><p>  1.将地形资源放入场景</p>
+<p>  2.写控制脚本，定义玩家信息</p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发（二）：玩家状态显示"><a href="#Unity实战-RTS3D即时战略游戏开发（二）：玩家状态显示" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发（二）：玩家状态显示"></a>Unity实战 RTS3D即时战略游戏开发（二）：玩家状态显示</h1><p>  1.对地形进行导航路径bake</p>
+<p>  Windows-&gt; Navigation -&gt;Bake选项(设定筛选地形参数)-&gt;bake</p>
+<p>  2.定义相机控制类</p>
+<p>  鼠标：使用滚轴设置camera视口，鼠标获横向移动设置camera旋转</p>
+<p>  键盘：使用键位WASD 设置camera x,z 方向位移</p>
+<p>  3.制作预制体<br>  Asset Store购买Free modle -&gt; modle 挂载 script -&gt; add collider(select) -&gt; add animator -&gt;完成prefab</p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发（三）：单位选中处理"><a href="#Unity实战-RTS3D即时战略游戏开发（三）：单位选中处理" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发（三）：单位选中处理"></a>Unity实战 RTS3D即时战略游戏开发（三）：单位选中处理</h1><p>  1.定义抽象选中类,抽象方法 Select/DeSelect -&gt; prefab 挂载</p>
+<p>  2.Select 触发特效 / DeSelect 特效消失 (我网上copy的脚本)</p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发（四）：鼠标管理器"><a href="#Unity实战-RTS3D即时战略游戏开发（四）：鼠标管理器" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发（四）：鼠标管理器"></a>Unity实战 RTS3D即时战略游戏开发（四）：鼠标管理器</h1><p>  实现选中(可多选)效果:  </p>
+<p>  定义Input控制类 -&gt; list存储select -&gt; update 更信息 </p>
+<p>  mouseDow 触发 , 选中add list 设置select /list clear 未点击的目标DeSelect  , shift 控制多选 </p>
+<p>  参考:</p>
+<p>  Unity3D实现鼠标选中“高亮”显示功能</p>
+<p>  <a href="http://blog.csdn.net/iothua/article/details/52328266" target="_blank" rel="noopener">http://blog.csdn.net/iothua/article/details/52328266</a></p>
+<p>  结合轮廓显示，实现完整的框选目标(附Demo代码) </p>
+<p>  <a href="http://www.ceeger.com/forum/read.php?tid=3682" target="_blank" rel="noopener">http://www.ceeger.com/forum/read.php?tid=3682</a></p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发（五）：Navigation-Mesh-自动寻路"><a href="#Unity实战-RTS3D即时战略游戏开发（五）：Navigation-Mesh-自动寻路" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发（五）：Navigation Mesh 自动寻路"></a>Unity实战 RTS3D即时战略游戏开发（五）：Navigation Mesh 自动寻路</h1><p>  1.select add NavMeshAgent </p>
+<p>  2.Input捕捉mouse右键点击，ray + 地形collider 获取目标地址 </p>
+<p>  3.select 触发 ，animator agent执行动作 / DeSelect animator agent停止</p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发-六-：信息显示"><a href="#Unity实战-RTS3D即时战略游戏开发-六-：信息显示" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发(六) ：信息显示"></a>Unity实战 RTS3D即时战略游戏开发(六) ：信息显示</h1><p>  构建单位modle</p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发-七-：-HUD的使用-小地图显示"><a href="#Unity实战-RTS3D即时战略游戏开发-七-：-HUD的使用-小地图显示" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发(七)： HUD的使用 小地图显示"></a>Unity实战 RTS3D即时战略游戏开发(七)： HUD的使用 小地图显示</h1><p>  1.创建UI/mapScript</p>
+<p>  2.设置地图两角 -&gt; 计算出地图vector2 -&gt; object创建的时候创建pointPrefab-&gt;获取gameObject位置，将其转化为canvas Vector2</p>
+<p>  3.将预制体全部设置该script</p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发-八-：HUD的使用-单位信息显示"><a href="#Unity实战-RTS3D即时战略游戏开发-八-：HUD的使用-单位信息显示" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发(八) ：HUD的使用 单位信息显示"></a>Unity实战 RTS3D即时战略游戏开发(八) ：HUD的使用 单位信息显示</h1><p>  构建UI select 触发 更新 UI ,未选择任何对象则显示默认的UI </p>
+<h1 id="Unity实战-RTS3D即时战略游戏开发-九-：行为管理器-Action的使用"><a href="#Unity实战-RTS3D即时战略游戏开发-九-：行为管理器-Action的使用" class="headerlink" title="Unity实战 RTS3D即时战略游戏开发(九) ：行为管理器 Action的使用"></a>Unity实战 RTS3D即时战略游戏开发(九) ：行为管理器 Action的使用</h1><p>  为modle绑定点击事件，将可以绑定的操作栏设置图片 &amp; action </p>
+<h1 id="原文地址"><a href="#原文地址" class="headerlink" title="原文地址"></a>原文地址</h1><p>  <a href="http://gad.qq.com/article/detail/33983" target="_blank" rel="noopener">http://gad.qq.com/article/detail/33983</a></p>
+<h1 id="题外"><a href="#题外" class="headerlink" title="题外"></a>题外</h1><p> 单例中的双重判断</p>
+<p>  <a href="https://www.cnblogs.com/damonhuang/p/5431866.html" target="_blank" rel="noopener">https://www.cnblogs.com/damonhuang/p/5431866.html</a></p>
+<p> 对象池</p>
+<p> 帧同步</p>
+<p> <a href="http://gad.qq.com/article/detail/28435" target="_blank" rel="noopener">http://gad.qq.com/article/detail/28435</a></p>
+<p> <a href="http://gad.qq.com/article/detail/33828" target="_blank" rel="noopener">http://gad.qq.com/article/detail/33828</a></p>
+<p> <a href="http://gad.qq.com/article/detail/32563" target="_blank" rel="noopener">http://gad.qq.com/article/detail/32563</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RTS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/RtS/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-《Shader入门精要》读书分享(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1247,114 +1355,6 @@ PlayMaker自身也有变量，我们叫做Fsm变量，以区别于Unity3D的变�
 
 
   
-    <article id="post-Chrome" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/Chrome/">Chrome</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/12/Chrome/" class="archive-article-date">
-  	<time datetime="2017-07-12T02:40:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chrome-贴士"><a href="#Chrome-贴士" class="headerlink" title="Chrome 贴士"></a>Chrome 贴士</h1><h2 id="调试-HTTP"><a href="#调试-HTTP" class="headerlink" title="调试 HTTP"></a>调试 HTTP</h2><p>eg: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://test2.gfplay.cn/mahjong/game_s_http_hb/index.php?randkey=&amp;c_version=3.0.2&amp;parameter=%7b%22mod%22%3a%22Business%22%2c%22platform%22%3a%22gfplay%22%2c%22act%22%3a%22login%22%2c%22access_token%22%3a%22foo%22%2c%22openid%22%3a%22B8A6150A-5341-5B9A-BE6B-CC6FBA488F86%22%2c%22type%22%3a1%7d</span><br></pre></td></tr></table></figure>
-<h3 id="Chrome-JSON-handle"><a href="#Chrome-JSON-handle" class="headerlink" title="Chrome + JSON-handle"></a>Chrome + JSON-handle</h3><ol>
-<li>打开新的标签页</li>
-<li>右键：<code>检查</code> 或者 <code>option</code> + <code>cmd</code> + <code>i</code>(Mac) / <code>ctrl</code> + <code>alt</code> + <code>i</code> (Windows)</li>
-<li>在下方弹出的调试工具中点选 <code>Network</code> 选项卡</li>
-<li>地址栏输入请求地址</li>
-<li>页面出现返回数据</li>
-<li>点击下方链接查看详细请求参数<ul>
-<li>Headers - 最下方有请求参数</li>
-<li>Preview - 是格式化后的JSON</li>
-</ul>
-</li>
-</ol>
-<p><img src="./chrome01.png" alt=""></p>
-<h3 id="PostMan"><a href="#PostMan" class="headerlink" title="PostMan"></a>PostMan</h3><p><img src="./chrome02.png" alt=""></p>
-<h2 id="查看-JSON"><a href="#查看-JSON" class="headerlink" title="查看 JSON"></a>查看 JSON</h2><h3 id="JSON-handle"><a href="#JSON-handle" class="headerlink" title="JSON-handle"></a>JSON-handle</h3><p>安装完成后，浏览器右上角会有图标。点击图标在弹出的输入框中粘贴需要格式化的字符串</p>
-<p><img src="./chrome03.png" alt=""></p>
-<h3 id="在线解析"><a href="#在线解析" class="headerlink" title="在线解析"></a>在线解析</h3><h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ol>
-<li>打开调试工具，<code>Console</code> 中输入代码（执行环境为JS）</li>
-<li><a href="http://regexr.com/" target="_blank" rel="noopener">RegExr</a></li>
-</ol>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>ps: Chrome 应用商店需要<a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">翻墙</a></p>
-<ul>
-<li><p><a href="https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=en-US" target="_blank" rel="noopener">Octotree</a> 生成 github 开源项目的目录</p>
-</li>
-<li><p><a href="https://chrome.google.com/webstore/detail/json-handle/iahnhfdhidomcpggpaimmmahffihkfnj?hl=zh-CN" target="_blank" rel="noopener">JSON-handle</a> 格式化 JSON</p>
-</li>
-<li><p><a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=zh-CN" target="_blank" rel="noopener">PostMan</a> 协议调试工具</p>
-</li>
-<li><p><a href="https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca" target="_blank" rel="noopener">Momentum</a></p>
-</li>
-<li><p><a href="https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl" target="_blank" rel="noopener">Markdown Preview Plus</a> markdown 预览，可以换主题。安装完之后要勾选允许读取文件的权限</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Chrome</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/Chrome/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1492,11 +1492,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">PlayMaker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ReactiveX</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PlayMaker</a>
+                <a href="javascript:void(0)" class="js-tag color4">RTS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1516,19 +1520,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ToLua</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">UNet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">ToLua</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1537,6 +1537,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Shader</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
